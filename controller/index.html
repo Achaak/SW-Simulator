@@ -1,0 +1,164 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Your Website</title>
+</head>
+
+<body>
+    <script src="../model/monster.js"></script>
+    <script src="../model/monsters.js"></script>
+    <script src="../model/fight.js"></script>
+    <script src="../model/groupMonster.js"></script>
+    <script src="../model/tools.js"></script>
+
+    <script type="text/javascript">
+        var gagne = 0;
+        var perd = 0;
+        
+
+        for (let index = 0; index < 100; index++) {
+            var newFight = new fight();
+            
+            newFight.setAlly( new Tarq(
+                /* HP    */ 4401,
+                /* ATK   */ 1150,
+                /* DEF   */ 147,
+                /* SPD   */ 84,
+                /* CRATE */ 60,
+                /* CDMG  */ 160,
+                /* RES   */ 15,
+                /* ACC   */ 18,
+                6,
+                4,
+                2
+            ));
+            newFight.setAlly( new Tarq(
+                /* HP    */ 4401,
+                /* ATK   */ 1150,
+                /* DEF   */ 147,
+                /* SPD   */ 84,
+                /* CRATE */ 60,
+                /* CDMG  */ 160,
+                /* RES   */ 15,
+                /* ACC   */ 18,
+                6,
+                4,
+                2
+            ));
+            newFight.setAlly( new Tarq(
+                /* HP    */ 4401,
+                /* ATK   */ 1150,
+                /* DEF   */ 147,
+                /* SPD   */ 84,
+                /* CRATE */ 60,
+                /* CDMG  */ 160,
+                /* RES   */ 15,
+                /* ACC   */ 18,
+                6,
+                4,
+                2
+            ));
+            newFight.setAlly( new Tarq(
+                /* HP    */ 4401,
+                /* ATK   */ 1150,
+                /* DEF   */ 147,
+                /* SPD   */ 84,
+                /* CRATE */ 60,
+                /* CDMG  */ 160,
+                /* RES   */ 15,
+                /* ACC   */ 18,
+                6,
+                4,
+                2
+            ));
+            newFight.setAlly( new Tarq(
+                /* HP    */ 4401,
+                /* ATK   */ 1150,
+                /* DEF   */ 147,
+                /* SPD   */ 84,
+                /* CRATE */ 60,
+                /* CDMG  */ 160,
+                /* RES   */ 15,
+                /* ACC   */ 18,
+                6,
+                4,
+                2
+            ));
+
+            newFight.setEnnemy( new Tarq(
+                /* HP    */ 4401,
+                /* ATK   */ 1150,
+                /* DEF   */ 147,
+                /* SPD   */ 84,
+                /* CRATE */ 60,
+                /* CDMG  */ 160,
+                /* RES   */ 15,
+                /* ACC   */ 18,
+                6,
+                4,
+                2
+            ));
+            newFight.setEnnemy( new Tarq(
+                /* HP    */ 4401,
+                /* ATK   */ 1150,
+                /* DEF   */ 147,
+                /* SPD   */ 84,
+                /* CRATE */ 60,
+                /* CDMG  */ 160,
+                /* RES   */ 15,
+                /* ACC   */ 18,
+                6,
+                4,
+                2
+            ));
+            newFight.setEnnemy( new Tarq(
+                /* HP    */ 4401,
+                /* ATK   */ 1150,
+                /* DEF   */ 147,
+                /* SPD   */ 84,
+                /* CRATE */ 60,
+                /* CDMG  */ 160,
+                /* RES   */ 15,
+                /* ACC   */ 18,
+                6,
+                4,
+                2
+            ));
+            newFight.setEnnemy( new Tarq(
+                /* HP    */ 4401,
+                /* ATK   */ 1150,
+                /* DEF   */ 147,
+                /* SPD   */ 84,
+                /* CRATE */ 60,
+                /* CDMG  */ 160,
+                /* RES   */ 15,
+                /* ACC   */ 18,
+                6,
+                4,
+                2
+            ));
+            newFight.setEnnemy( new Tarq(
+                /* HP    */ 4401,
+                /* ATK   */ 1150,
+                /* DEF   */ 147,
+                /* SPD   */ 84,
+                /* CRATE */ 60,
+                /* CDMG  */ 160,
+                /* RES   */ 15,
+                /* ACC   */ 18,
+                6,
+                4,
+                2
+            ));
+
+            if(newFight.start())
+                gagne++;
+            else
+                perd++;
+        }
+        
+        console.log(((100*gagne)/(gagne+perd)) + "% de victoire");
+    </script>
+</body>
+</html>
