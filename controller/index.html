@@ -11,6 +11,7 @@
     <script src="../model/fight.js"></script>
     <script src="../model/groupMonster.js"></script>
     <script src="../model/tools.js"></script>
+    <script src="../model/buildings_and_flags.js"></script>
 
     <script type="text/javascript">
         var gagne = 0;
@@ -19,6 +20,27 @@
 
         for (let index = 0; index < 100; index++) {
             var newFight = new fight();
+
+            newFight.setGloryBuildings({
+                crystal_Rock	        : 0,
+                guardstone	            : 0,
+                water_sanctuary	        : 0,
+                fire_sanctuary	        : 0,
+                wind_sanctuary	        : 0,
+                light_sanctuary	        : 0,
+                dark_sanctuary          : 0,
+                ancient_sword           : 0,
+                crystal_Altar           : 0,
+                sky_tribe_totem         : 0,
+                arcane_Booster_Tower    : 0,
+                fallen_Ancient_Guardian : 0
+            });
+            newFight.setFlagsGvG({
+                flag_of_rage  : 0,
+                flag_of_hope  : 0,
+                flag_of_will  : 0,
+                flag_of_battle: 0
+            });
             
             newFight.setAlly( new Tarq(
                 /* HP    */ 4401,

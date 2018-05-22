@@ -4,10 +4,15 @@ class fight {
         this.ennemies   = new groupMonster();
 
         this.allMonster = new groupMonster();
+
+        this.buildings_and_flags = new buildings_and_flags();
     }
 
     setAlly  (monster) { this.allies.setMonster(monster);   this.allMonster.setMonster(monster); }
     setEnnemy(monster) { this.ennemies.setMonster(monster); this.allMonster.setMonster(monster); }
+
+    setGloryBuildings(e) { this.buildings_and_flags.setGloryBuildings(e); }
+    setFlagsGvG      (e) { this.buildings_and_flags.setFlagsGvG(e);       }
 
     setEnnemiesAndAlliesToAllMonster() {
         for (var i = 0; i < this.allies.size(); i++) {
@@ -20,9 +25,15 @@ class fight {
             this.ennemies.getMonster(i).setAllies(this.ennemies);
         }
     }
+    setBuildingsAndFlagsToAllAllies() {
+        for (var i = 0; i < this.allies.size(); i++) {
+            this.allies.getMonster(i).setBuildingsAndFlags(this.buildings_and_flags);
+        }
+    }
 
     start() {
         this.setEnnemiesAndAlliesToAllMonster();
+        this.setBuildingsAndFlagsToAllAllies();
         this.allMonster.roundUp();
 
 

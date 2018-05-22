@@ -104,6 +104,7 @@ class Monster {
 
         this.ennemies = null;
         this.allies   = null;
+        this.buildings_and_flags = null;
     }
 
     setStatsRune(hp, atk, def, spd, cRate, cDmg, res, acc) {
@@ -131,6 +132,7 @@ class Monster {
     }
     setEnnemies(ennemies) { this.ennemies = ennemies; }    
     setAllies  (allies)   { this.allies   = allies;   }
+    setBuildingsAndFlags(buildings_and_flags) { this.buildings_and_flags = buildings_and_flags; }   
     setDamage(damage) {
         var hpLost = damage*this.dmgReduction();
 
