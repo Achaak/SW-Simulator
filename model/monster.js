@@ -160,7 +160,9 @@ class Monster {
     }
 
     setDamage(damage) {
-        var hpLost = damage*this.dmgReduction();
+        var debuffBrand = (this.debuffBrand > 0 ? 1.3 : 1);
+
+        var hpLost = (damage*debuffBrand)*this.dmgReduction();
 
         this.Ahp -= hpLost;
         
