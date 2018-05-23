@@ -201,7 +201,13 @@ class Monster {
             buffAndDebuffAtk -= (this.debuffAtk > 0 ? 0.5 : 0);
             buffAndDebuffAtk  = (buffAndDebuffAtk == 0 ? 1 : buffAndDebuffAtk);
 
+        //var gloryBuilding = (this.buildings_and_flags != null ? this.buildings_and_flags.get : 0);
+        
         return (this.Aatk)*buffAndDebuffAtk; 
+
+        //(base atk * (1 + atk% from glory buildings + atk% from leader skills)) 
+        // * skill multiplier * 
+        // (1 + dmg from skillups% + base cd% + cd% from runes + cd% from glory building + cd% from leader skill)
     }
     getActualSpd() { 
         var buffAndDebuffSpd  = (this.buffAtkSpd   > 0 ? 0.3 : 0);

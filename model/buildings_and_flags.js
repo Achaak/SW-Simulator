@@ -1,23 +1,40 @@
 class buildings_and_flags {
     constructor() {
-        this.crystal_Rock	         = 0;
-        this.guardstone	             = 0;
-        this.water_sanctuary	     = 0;
-        this.fire_sanctuary	         = 0;
-        this.wind_sanctuary	         = 0;
-        this.light_sanctuary	     = 0;
-        this.dark_sanctuary          = 0;
-        this.ancient_sword           = 0;
-        this.crystal_Altar           = 0;
-        this.sky_tribe_totem         = 0;
-        this.arcane_Booster_Tower    = 0;
-        this.fallen_Ancient_Guardian = 0;
+        this.crystal_Rock	         = 0; // ARCANE TOWER DMG
+        this.guardstone	             = 0; // DEF
+        this.water_sanctuary	     = 0; // WATER ATK
+        this.fire_sanctuary	         = 0; // FIRE  ATK
+        this.wind_sanctuary	         = 0; // WIND  ATK
+        this.light_sanctuary	     = 0; // LIGHT ATK
+        this.dark_sanctuary          = 0; // DARK  ATK
+        this.ancient_sword           = 0; // ATK
+        this.crystal_Altar           = 0; // HP
+        this.sky_tribe_totem         = 0; // SPD
+        this.arcane_Booster_Tower    = 0; // ARCANE TOWER SPD
+        this.fallen_Ancient_Guardian = 0; // CDMG
 
-        this.flag_of_rage   = 0
-        this.flag_of_hope   = 0
-        this.flag_of_will   = 0
-        this.flag_of_battle = 0
+        this.flag_of_rage   = 0; // CDMG GVG
+        this.flag_of_hope   = 0; // HP   GVG
+        this.flag_of_will   = 0; // DEF  GVG
+        this.flag_of_battle = 0; // ATK  GVG
     }
+
+    getCrystal_Rock()            { return this.crystal_Rock;            }
+    getGuardstone()              { return this.guardstone;              }
+    getWater_sanctuary()         { return this.water_sanctuary;         }
+    getFire_sanctuary()          { return this.fire_sanctuary;          }
+    getWind_sanctuary()          { return this.wind_sanctuary;          }
+    getLight_sanctuary()         { return this.light_sanctuary;         }
+    getDark_sanctuary()          { return this.dark_sanctuary;          }
+    getAncient_sword()           { return this.ancient_sword;           }
+    getCrystal_Altar()           { return this.crystal_Altar;           }
+    getSky_tribe_totem()         { return this.sky_tribe_totem;         }
+    getArcane_Booster_Tower()    { return this.arcane_Booster_Tower;    }
+    getFallen_Ancient_Guardian() { return this.fallen_Ancient_Guardian; }
+    getFlag_of_rage()            { return this.flag_of_rage;            }
+    getFlag_of_hope()            { return this.flag_of_hope;            }
+    getFlag_of_will()            { return this.flag_of_will;            }
+    getFlag_of_battle()          { return this.flag_of_battle;          }
 
     setGloryBuildings(e) {
         switch(e.crystal_Rock) {
