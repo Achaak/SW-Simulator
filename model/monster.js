@@ -309,19 +309,14 @@ class Monster {
         return this.Adef*buffAndDebuffDef;
     }
     
-    getHasCrit(cRate, damage, skill) {
+    getHasCrit(cRate, damage, dmgSkillUp) {
         // (base atk * (1 + atk% from glory buildings + atk% from leader skills)) 
         // * skill multiplier * 
         // (1 + dmg from skillups% + base cd% + cd% from runes + cd% from glory building + cd% from leader skill)
 
         var random = Math.random();
 
-        var dmgSkillUp = 0
-        switch (skill) {
-            case 1: dmgSkillUp += this.dmgSkillUp1/100; break;
-            case 2: dmgSkillUp += this.dmgSkillUp2/100; break;
-            case 3: dmgSkillUp += this.dmgSkillUp3/100; break;
-        }
+        var dmgSkillUp = dmgSkillUp/100;
 
         if(random < (cRate/100)) return damage*(1 + dmgSkillUp + (this.getActualCDmg()/100));
         else                     return damage*(1 + dmgSkillUp);

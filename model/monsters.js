@@ -103,20 +103,18 @@
             skill1() {
                 // Bite your enemy and recover 30% of the inflicted damage as HP.
                 // 3.6*{ATK}
-                var skill = 1;
 
                 var damage = 3.6*this.getActualAtk();
-                    damage = this.getHasCrit(this.getActualCRate(), damage, skill);
+                    damage = this.getHasCrit(this.getActualCRate(), damage, this.dmgSkillUp1);
                 
                 this.setHpFlat(this.target.setDamage(damage)*0.3);
             }
             skill2() {
                 // Attacks the enemy and increases your Attack Speed for 2 turns. Damage increases according to your Attack Speed. (Reusable in 3 turns).
                 // {ATK}*({SPD} + 140)/50
-                var skill = 2;
 
                 var damage = this.getActualAtk()*(this.getActualSpd()+140)/50;
-                    damage = this.getHasCrit(this.getActualCRate(), damage, 2);
+                    damage = this.getHasCrit(this.getActualCRate(), damage, this.dmgSkillUp2);
                 
                 this.target.setDamage(damage);
 
@@ -127,8 +125,7 @@
             skill3() {
                 // Perform a fierce cooperative attack with two fellow allies. (Reusable in 6 turns).
                 // 4.1*{ATK} x3
-                var skill = 3;
-                
+
                 var monsters = this.allies.getMonstersWithoutHim([this], 2);
                 monsters.forEach(monster => {
                     monster.setTarget(this.target);
@@ -137,7 +134,7 @@
                 });
 
                 var damage = 4.1*this.getActualAtk();
-                    damage = this.getHasCrit(this.getActualCRate(), damage, 3);
+                    damage = this.getHasCrit(this.getActualCRate(), damage, this.dmgSkillUp3);
                 
                 this.target.setDamage(damage);
 
@@ -247,20 +244,18 @@
             skill1() {
                 // Bite your enemy and recover 30% of the inflicted damage as HP.
                 // 3.6*{ATK}
-                var skill = 1;
 
                 var damage = 3.6*this.getActualAtk();    
-                    damage = this.getHasCrit(this.getActualCRate(), damage, skill);
+                    damage = this.getHasCrit(this.getActualCRate(), damage, this.dmgSkillUp1);
         
                 this.setHpFlat(this.target.setDamage(damage)*0.3);
             }
             skill2() {
                 // Bite your enemy continuously to inflict great damage. (Reusable in 3 turns).
                 // 3.7*{ATK} x2
-                var skill = 2;
 
                 var damage = damage = 3.7*this.getActualAtk();
-                    damage = this.getHasCrit(this.getActualCRate(), damage, 2);
+                    damage = this.getHasCrit(this.getActualCRate(), damage, this.dmgSkillUp2);
 
                 for (var i = 0; i < 2; i++) 
                     this.target.setDamage(damage);
@@ -269,7 +264,6 @@
             }
             skill3() {
                 // Increases the Attack Power and Critical Rate of all allies for 3 turns. (Reusable in 5 turns).
-                var skill = 3;
 
                 this.allies.getMonsters().forEach(monster => {
                     monster.setBuffAtk(3);
@@ -384,26 +378,23 @@
 
             skill1() {
                 // Attacks an enemy and looks for its weakness. This attack decreases the enemy's Defense for 2 turns with a 50% chance.
-                // 3.8*{ATK}           
-                var skill = 1;
+                // 3.8*{ATK}        
 
                 var damage = 3.8*this.getActualAtk();    
-                    damage = this.getHasCrit(this.getActualCRate(), damage, skill);
+                    damage = this.getHasCrit(this.getActualCRate(), damage, this.dmgSkillUp1);
                 
                 this.target.setDamage(damage);
             }
             skill2() {
                 // Attacks the enemy 2 times. Each attack has a 75% chance to leave a Brand and Silence the target for 2 turns. (Reusable in 4 turns).
                 // 3.0*{ATK} x2
-                var skill = 2;
 
                 this.resetSkill2();
             }
             skill3() {
                 // Attacks an enemy and decreases its Attack Bar by 10% for each attack. The number of strikes will increase up to 7 hits accordingly to your Attack Speed. (Reusable in 6 turns).
                 // 1.8*{ATK} x7
-                var skill = 3;
-
+                
                 this.resetSkill3();
             }
         }
