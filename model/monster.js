@@ -279,7 +279,14 @@ class Monster {
         return this.Aatk*buffAndDebuffAtk;
     }
     getActualCRate () {
-        return this.AcRate;
+        var buffCRate  = (this.buffCRate > 0 ? 30 : 0) + this.AcRate;
+        if(buffCRate > 100) buffCRate = 100;
+
+        if      (elementalAdvantage(this.element, this.target.element) == 1) buffCRate+= 15;
+        else if (elementalAdvantage(this.element, this.target.element) == 2) buffCRate-= 15;
+        if(buffCRate > 100) buffCRate = 100;
+        
+        return buffCRate;
     }
     getActualCDmg () {
         return this.AcDmg;

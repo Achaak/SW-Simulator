@@ -19,23 +19,23 @@ function dynamicSort(property) {
     }
 }
 
-function elementalAdvantage(elem1, elem2) {
-    if      (elem1 == 'fire'  && elem2 == "wind" )
+function elementalAdvantage(attacker, defender) {
+    if      (attacker == 'fire'  && defender == "wind" )
         return 1;
-    else if (elem1 == 'wind'  && elem2 == "water")
+    else if (attacker == 'wind'  && defender == "water")
         return 1;
-    else if (elem1 == 'water' && elem2 == "fire" )
+    else if (attacker == 'water' && defender == "fire" )
         return 1;
-    else if (elem1 == 'dark'  && elem2 == "light")
+    else if (attacker == 'dark'  && defender == "light")
         return 1;
-    else if (elem1 == 'light' && elem2 == "dark" )
+    else if (attacker == 'light' && defender == "dark" )
         return 1;
         
-    else if (elem1 == 'fire'  && elem2 == "water")
+    else if (attacker == 'fire'  && defender == "water")
         return 2;
-    else if (elem1 == 'water' && elem2 == "wind" )
+    else if (attacker == 'water' && defender == "wind" )
         return 2;
-    else if (elem1 == 'wind'  && elem2 == "fire" )
+    else if (attacker == 'wind'  && defender == "fire" )
         return 2;
     else
         return 0;

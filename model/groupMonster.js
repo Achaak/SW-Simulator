@@ -17,6 +17,7 @@ class groupMonster {
     size() {return this.group.length; }
 
     getMonster(i) { return this.group[i]; }
+    getMonsters() { return this.group;    }
 
     getMonstersWithoutHim(monsters, nb) {
         var withoutMonsters = Array();
