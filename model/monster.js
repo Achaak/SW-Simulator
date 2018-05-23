@@ -226,7 +226,7 @@ class Monster {
         return (this.Aspd)*buffAndDebuffSpd; 
     }
     
-    getHasCrit(cRate, damage) {
+    getHasCrit(cRate, damage, skill) {
         // (base atk * (1 + atk% from glory buildings + atk% from leader skills)) 
         // * skill multiplier * 
         // (1 + dmg from skillups% + base cd% + cd% from runes + cd% from glory building + cd% from leader skill)
@@ -239,8 +239,15 @@ class Monster {
             cDmgBuildingsAndFlags += this.buildings_and_flags.getFlag_of_rage();
         }
 
-        if(random < ((cRate/100)+this.leaderSkillCRate)) return damage*(1 /*+ dmg from skillup*/ + (this.AcDmg/100) + cDmgBuildingsAndFlags + this.leaderSkillCDmg);
-        else                     return damage;
+        var dmgSkillUp = 0
+        switch (skill) {
+            case 1: dmgSkillUp += this.dmgSkillUp1/100; break;
+            case 2: dmgSkillUp += this.dmgSkillUp2/100; break;
+            case 3: dmgSkillUp += this.dmgSkillUp3/100; break;
+        }
+
+        if(random < ((cRate/100)+this.leaderSkillCRate)) return damage*(1 + dmgSkillUp + (this.AcDmg/100) + cDmgBuildingsAndFlags + this.leaderSkillCDmg);
+        else                     return damage*(1 + dmgSkillUp);
     }
 
     getAtkBuffAndDebuff(damage) {

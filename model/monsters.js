@@ -23,43 +23,25 @@ class Tarq extends Monster{
             var effectRateSkillUp3 = 0;
 
             /* SKILL 1 */
-                switch (nbSkillUp1) {
-                    case 1: dmgSkillUp1 += 5;
-                        break;
-                    case 2: dmgSkillUp1 += 5;
-                        break;
-                    case 3: dmgSkillUp1 += 5;
-                        break;
-                    case 4: dmgSkillUp1 += 5;
-                        break;
-                    case 5: dmgSkillUp1 += 5;
-                        break;
-                    case 6: dmgSkillUp1 += 15;
-                        break;
-                }
+                if(nbSkillUp1 >= 1) dmgSkillUp1 += 5;
+                if(nbSkillUp1 >= 2) dmgSkillUp1 += 5;
+                if(nbSkillUp1 >= 3) dmgSkillUp1 += 5;
+                if(nbSkillUp1 >= 4) dmgSkillUp1 += 5;
+                if(nbSkillUp1 >= 5) dmgSkillUp1 += 5;
+                if(nbSkillUp1 >= 6) dmgSkillUp1 += 15;
             /* END SKILL 1 */
             
-            /* SKILL 1 */
-                switch (nbSkillUp2) {
-                    case 1: dmgSkillUp2 += 10;
-                        break;
-                    case 2: dmgSkillUp2 += 10;
-                        break;
-                    case 3: dmgSkillUp2 += 10;
-                        break;
-                    case 4: cdSkill2--;
-                        break;
-                }
-            /* END SKILL 1 */
+            /* SKILL 2 */
+                if(nbSkillUp2 >= 1) dmgSkillUp2 += 10;
+                if(nbSkillUp2 >= 2) dmgSkillUp2 += 10;
+                if(nbSkillUp2 >= 3) dmgSkillUp2 += 10;
+                if(nbSkillUp2 >= 4) cdSkill2--;
+            /* END SKILL 2 */
             
-            /* SKILL 1 */
-                switch (nbSkillUp3) {
-                    case 1: cdSkill3--;
-                        break;
-                    case 2: cdSkill3--;
-                        break;
-                }
-            /* END SKILL 1 */
+            /* SKILL 3 */
+                if(nbSkillUp3 >= 1) cdSkill3--;
+                if(nbSkillUp3 >= 2) cdSkill3--;
+            /* END SKILL 3 */
         /* AND SKILL UP */
 
 
@@ -118,9 +100,11 @@ class Tarq extends Monster{
     skill1() {
         // Bite your enemy and recover 30% of the inflicted damage as HP.
         // 3.6*{ATK}
+        var skill = 1;
+
         var damage = 3.6*this.getActualAtk();
 
-        damage = this.getHasCrit(this.AcRate, damage);
+        damage = this.getHasCrit(this.AcRate, damage, skill);
         damage = this.getAtkBuffAndDebuff(damage);
         
         this.setHpFlat(this.getTarget().setDamage(damage)*0.3);
@@ -128,9 +112,11 @@ class Tarq extends Monster{
     skill2() {
         // Attacks the enemy and increases your Attack Speed for 2 turns. Damage increases according to your Attack Speed. (Reusable in 3 turns).
         // {ATK}*({SPD} + 140)/50
+        var skill = 2;
+
         var damage = this.getActualAtk()*(this.getActualSpd()+140)/50;
 
-        damage = this.getHasCrit(this.AcRate, damage);
+        damage = this.getHasCrit(this.AcRate, damage, 2);
         damage = this.getAtkBuffAndDebuff(damage);
         
         this.getTarget().setDamage(damage);
@@ -142,6 +128,7 @@ class Tarq extends Monster{
     skill3() {
         // Perform a fierce cooperative attack with two fellow allies. (Reusable in 6 turns).
         // 4.1*{ATK} x3
+        var skill = 3;
 
         this.resetSkill3();
     }
@@ -173,43 +160,25 @@ class Tarq extends Monster{
                 var effectRateSkillUp3 = 0;
 
                 /* SKILL 1 */
-                    switch (nbSkillUp1) {
-                        case 1: dmgSkillUp1 += 5;
-                            break;
-                        case 2: dmgSkillUp1 += 5;
-                            break;
-                        case 3: dmgSkillUp1 += 5;
-                            break;
-                        case 4: dmgSkillUp1 += 5;
-                            break;
-                        case 5: dmgSkillUp1 += 5;
-                            break;
-                        case 6: dmgSkillUp1 += 15;
-                            break;
-                    }
+                    if(nbSkillUp1 >= 1) dmgSkillUp1 += 5;
+                    if(nbSkillUp1 >= 1) dmgSkillUp1 += 5;
+                    if(nbSkillUp1 >= 1) dmgSkillUp1 += 5;
+                    if(nbSkillUp1 >= 1) dmgSkillUp1 += 5;
+                    if(nbSkillUp1 >= 1) dmgSkillUp1 += 5;
+                    if(nbSkillUp1 >= 1) dmgSkillUp1 += 15;
                 /* END SKILL 1 */
                 
-                /* SKILL 1 */
-                    switch (nbSkillUp2) {
-                        case 1: dmgSkillUp2 += 10;
-                            break;
-                        case 2: dmgSkillUp2 += 10;
-                            break;
-                        case 3: dmgSkillUp2 += 10;
-                            break;
-                        case 4: cdSkill2--;
-                            break;
-                    }
-                /* END SKILL 1 */
+                /* SKILL 2 */
+                    if(nbSkillUp2 >= 1) dmgSkillUp2 += 10;
+                    if(nbSkillUp2 >= 2) dmgSkillUp2 += 10;
+                    if(nbSkillUp2 >= 3) dmgSkillUp2 += 10;
+                    if(nbSkillUp2 >= 4) cdSkill2--;
+                /* END SKILL 2 */
                 
-                /* SKILL 1 */
-                    switch (nbSkillUp3) {
-                        case 1: cdSkill3--;
-                            break;
-                        case 2: cdSkill3--;
-                            break;
-                    }
-                /* END SKILL 1 */
+                /* SKILL 3 */
+                    if(nbSkillUp3 >= 1) cdSkill3--;
+                    if(nbSkillUp3 >= 2) cdSkill3--;
+                /* END SKILL 3 */
             /* AND SKILL UP */
     
             super(
@@ -264,9 +233,11 @@ class Tarq extends Monster{
         skill1() {
             // Bite your enemy and recover 30% of the inflicted damage as HP.
             // 3.6*{ATK}
+            var skill = 1;
+
             var damage = 3.6*this.getActualAtk();
     
-            damage = this.getHasCrit(this.AcRate, damage);
+            damage = this.getHasCrit(this.AcRate, damage, skill);
             damage = this.getAtkBuffAndDebuff(damage);
     
             this.setHpFlat(this.getTarget().setDamage(damage)*0.3);
@@ -274,9 +245,11 @@ class Tarq extends Monster{
         skill2() {
             // Bite your enemy continuously to inflict great damage. (Reusable in 3 turns).
             // 3.7*{ATK} x2
+            var skill = 2;
+
             var damage = damage = 3.7*this.getActualAtk();
 
-            damage = this.getHasCrit(this.AcRate, damage);
+            damage = this.getHasCrit(this.AcRate, damage, 2);
             damage = this.getAtkBuffAndDebuff(damage);
 
             for (var i = 0; i < 2; i++) 
@@ -287,6 +260,7 @@ class Tarq extends Monster{
         skill3() {
             // Increases the Attack Power and Critical Rate of all allies for 3 turns. (Reusable in 5 turns).
             // 4.1*{ATK} x3
+            var skill = 3;
 
             this.resetSkill3();
         }
@@ -319,47 +293,27 @@ class Tarq extends Monster{
                 var effectRateSkillUp3 = 0;
 
                 /* SKILL 1 */
-                    switch (nbSkillUp1) {
-                        case 1: dmgSkillUp1 += 5;
-                            break;
-                        case 2: dmgSkillUp1 += 5;
-                            break;
-                        case 3: effectRateSkillUp1 += 10;
-                            break;
-                        case 4: dmgSkillUp1 += 10;
-                            break;
-                        case 5: effectRateSkillUp1 += 15;
-                            break;
-                    }
+                    if(nbSkillUp1 >= 1) dmgSkillUp1 += 5;
+                    if(nbSkillUp1 >= 1) dmgSkillUp1 += 5;
+                    if(nbSkillUp1 >= 1) effectRateSkillUp1 += 10;
+                    if(nbSkillUp1 >= 1) dmgSkillUp1 += 10;
+                    if(nbSkillUp1 >= 1) effectRateSkillUp1 += 15;
                 /* END SKILL 1 */
                 
-                /* SKILL 1 */
-                    switch (nbSkillUp2) {
-                        case 1: dmgSkillUp2 += 10;
-                            break;
-                        case 2: effectRateSkillUp2 += 10;
-                            break;
-                        case 3: dmgSkillUp2 += 10;
-                            break;
-                        case 4: effectRateSkillUp2 += 15;
-                            break;
-                        case 5: cdSkill2--;
-                            break;
-                    }
-                /* END SKILL 1 */
+                /* SKILL 2 */
+                    if(nbSkillUp2 >= 1) dmgSkillUp2 += 10;
+                    if(nbSkillUp2 >= 2) effectRateSkillUp2 += 10;
+                    if(nbSkillUp2 >= 3) dmgSkillUp2 += 10;
+                    if(nbSkillUp2 >= 4) effectRateSkillUp2 += 15;
+                    if(nbSkillUp2 >= 5) cdSkill2--;
+                /* END SKILL 2 */
                 
-                /* SKILL 1 */
-                    switch (nbSkillUp3) {
-                        case 1: dmgSkillUp3 += 10;
-                            break;
-                        case 2: dmgSkillUp3 += 10;
-                            break;
-                        case 3: cdSkill3--;
-                            break;
-                        case 4: cdSkill3--;
-                            break;
-                    }
-                /* END SKILL 1 */
+                /* SKILL 2 */
+                    if(nbSkillUp3 >= 1) dmgSkillUp3 += 10;
+                    if(nbSkillUp3 >= 2) dmgSkillUp3 += 10;
+                    if(nbSkillUp3 >= 3) cdSkill3--;
+                    if(nbSkillUp3 >= 4) cdSkill3--;
+                /* END SKILL 2 */
             /* AND SKILL UP */
     
             super(
@@ -412,20 +366,24 @@ class Tarq extends Monster{
         }
 
         skill1() {
+            var skill = 1;
+
             var damage = 3.8*this.getActualAtk();
     
-            damage = this.getHasCrit(this.AcRate, damage);
+            damage = this.getHasCrit(this.AcRate, damage, skill);
             damage = this.getAtkBuffAndDebuff(damage);
             
             this.getTarget().setDamage(damage);
         }
         skill2() {
             //{ATK}*({SPD} + 140)/50
+            var skill = 2;
 
             this.resetSkill2();
         }
         skill3() {
             //4.1*{ATK} x3
+            var skill = 3;
 
             this.resetSkill3();
         }
