@@ -2,8 +2,14 @@ class Monster {
     constructor(
         name, 
         element, 
-        hp, atk, def, spd, 
-        cRate, cDmg, res, acc, 
+        hp,    Rhp,
+        atk,   Ratk,
+        def,   Rdef,
+        spd,   Rspd,
+        cRate, RcRate,
+        cDmg,  RcDmg,
+        res,   Rres,
+        acc,   Racc,
         cdSkill2, cdSkill3, 
         dmgSkillUp1, dmgSkillUp2, dmgSkillUp3, 
         effectRateSkillUp1, effectRateSkillUp2, effectRateSkillUp3
@@ -12,28 +18,6 @@ class Monster {
         this.element = element;
 
         /* STATS */
-            /* ACTUAL */
-                this.Ahp    = hp;
-                this.Aatk   = atk;
-                this.Adef   = def;
-                this.Aspd   = spd;
-                this.AcRate = cRate;
-                this.AcDmg  = cDmg;
-                this.Ares   = res;
-                this.Aacc   = acc;
-            /* END ACTUAL */
-
-            /* TOTAL */
-                this.Thp    = hp;
-                this.Tatk   = atk;
-                this.Tdef   = def;
-                this.Tspd   = spd;
-                this.TcRate = cRate;
-                this.TcDmg  = cDmg;
-                this.Tres   = res;
-                this.Tacc   = acc;
-            /* END TOTAL */
-
             /* BASE */
                 this.Bhp    = hp;
                 this.Batk   = atk;
@@ -43,7 +27,29 @@ class Monster {
                 this.BcDmg  = cDmg;
                 this.Bres   = res;
                 this.Bacc   = acc;
-            /* BASE */
+            /* END BASE */
+
+            /* ACTUAL */
+                this.Ahp    = hp  + (Rhp    != undefined ? Rhp    : 0    );
+                this.Aatk   = atk + (Ratk   != undefined ? Ratk   : 0    );
+                this.Adef   = def + (Rdef   != undefined ? Rdef   : 0    );
+                this.Aspd   = spd + (Rspd   != undefined ? Rspd   : 0    );
+                this.AcRate =       (RcRate != undefined ? RcRate : cRate);
+                this.AcDmg  =       (RcDmg  != undefined ? RcDmg  : cDmg );
+                this.Ares   =       (Rres   != undefined ? Rres   : res  );
+                this.Aacc   =       (Racc   != undefined ? Racc   : acc  );
+            /* END ACTUAL */
+
+            /* TOTAL */
+                this.Thp    = this.Ahp;
+                this.Tatk   = this.Aatk;
+                this.Tdef   = this.Adef;
+                this.Tspd   = this.Aspd;
+                this.TcRate = this.AcRate;
+                this.TcDmg  = this.AcDmg;
+                this.Tres   = this.Ares;
+                this.Tacc   = this.Aacc;
+            /* END TOTAL */
         /* END STATS */
 
         /* BUFF */
@@ -116,30 +122,7 @@ class Monster {
             this.leaderSkillDef   = 0;
         /* END LEADER SKILL */
     }
-
-    setStatsRune(hp, atk, def, spd, cRate, cDmg, res, acc) {
-        /* ACTUAL */
-            this.Ahp    += hp;
-            this.Aatk   += atk;
-            this.Adef   += def;
-            this.Aspd   += spd;
-            this.AcRate = cRate;
-            this.AcDmg  = cDmg;
-            this.Ares   = res;
-            this.Aacc   = acc;
-        /* END ACTUAL */
-
-        /* TOTAL */
-            this.Thp    += hp;
-            this.Tatk   += atk;
-            this.Tdef   += def;
-            this.Tspd   += spd;
-            this.TcRate = cRate;
-            this.TcDmg  = cDmg;
-            this.Tres   = res;
-            this.Tacc   = acc;
-        /* END TOTAL */
-    }
+    
     setEnnemies(ennemies) { this.ennemies = ennemies; }    
     setAllies  (allies)   { this.allies   = allies;   }
     setBuildingsAndFlags(buildings_and_flags) { this.buildings_and_flags = buildings_and_flags; }   
@@ -173,6 +156,7 @@ class Monster {
 
         if(this.Ahp > this.Thp) this.Ahp = this.Thp;
     }
+    setAtb(atbValue) { this.atb += atbValue; }
 
     newTarget() {
         var prioTarget = new Array();
@@ -209,6 +193,7 @@ class Monster {
     setTarget(target) {
         this.target = target;
     }
+
     setAtkStartBattle() { 
         //(base atk * (1 + atk% from glory buildings + atk% from leader skills)) 
         // * skill multiplier * 
@@ -252,7 +237,7 @@ class Monster {
             spdBuildingsAndFlags += this.buildings_and_flags.getAncient_sword();            
             spdBuildingsAndFlags += this.buildings_and_flags.getFlag_of_battle();
         }
-        
+
         this.Aspd = this.Tspd = (this.Bspd*(1 + spdBuildingsAndFlags + this.leaderSkillSpd)+(this.Tspd-this.Bspd));
     }
     setHpStartBattle() {
@@ -273,6 +258,7 @@ class Monster {
         
         this.Adef = this.Tdef = (this.Bdef*(1 + defBuildingsAndFlags + this.leaderSkillDef)+(this.Tdef-this.Bdef));
     }
+
     getActualAtk() {
         var buffAndDebuffAtk  = (this.buffAtk   > 0 ? 0.5 : 0);
             buffAndDebuffAtk -= (this.debuffAtk > 0 ? 0.5 : 0);
@@ -294,9 +280,9 @@ class Monster {
         return this.AcDmg;
     }
     getActualSpd() { 
-        var buffAndDebuffSpd  = (this.buffAtkSpd   > 0 ? 0.3 : 0);
+        var buffAndDebuffSpd = 1;
+            buffAndDebuffSpd += (this.buffAtkSpd   > 0 ? 0.3 : 0);
             buffAndDebuffSpd -= (this.debuffAtkSpd > 0 ? 0.3 : 0);
-            buffAndDebuffSpd  = (buffAndDebuffSpd == 0 ? 1 : buffAndDebuffSpd);
 
         return this.Aspd*buffAndDebuffSpd; 
     }
@@ -324,9 +310,12 @@ class Monster {
         else                     return damage*(1 + dmgSkillUp);
     }
 
-    RoundUp() {
-        this.atb += (this.getActualSpd()*0.7);
+    atbTick() {
+       // console.log(this.atb);
+        this.atb += (this.getActualSpd()*0.07);
+    }
 
+    RoundUp() {
         /* REDUC CD BUFF */
             this.buffAtk         = (this.buffAtk         > 0 ? this.buffAtk--         : 0);
             this.buffDef         = (this.buffDef         > 0 ? this.buffDef--         : 0);

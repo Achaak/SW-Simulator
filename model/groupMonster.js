@@ -7,9 +7,9 @@ class groupMonster {
 
     sortGroup() { this.group.sort(dynamicSort('-atb')); }
 
-    roundUp() {        
+    atbTick() {        
         for (var i = 0; i < this.group.length; i++)
-            this.group[i].RoundUp();
+            this.group[i].atbTick();
 
         this.sortGroup();
     }

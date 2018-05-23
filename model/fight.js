@@ -43,32 +43,28 @@ class fight {
         this.setEnnemiesAndAlliesToAllMonster();
         this.setBuildingsAndFlagsToAllAllies();
         this.setLeaderSkillToAllAllies();
-        this.allMonster.roundUp();
-
 
         while(this.getBoolFightFinish()) {
-            this.allMonster.roundUp();
+            this.allMonster.atbTick();
             this.allMonster.sortGroup();
 
-            for (var i = 0; i < this.allMonster.size() && this.getBoolFightFinish(); i++) {
-                if(this.allMonster.getMonster(i).atb > 0) {
-                    this.allMonster.getMonster(i).play();
+            var cptMonster = 0;
+            while(cptMonster < this.allMonster.size() && this.getBoolFightFinish()) {
+                if(this.allMonster.getMonster(cptMonster).atb > 100) {
+                    this.allMonster.getMonster(cptMonster).play();
 
                     this.verifLifeGroupMonsters();
-
+                    
                     this.allMonster.sortGroup();
 
-                    
-                    /*console.log(this.allMonster.getMonster(i).name + " " + this.allMonster.getMonster(i).Ahp);
-                    console.log(this.allies);
-                    console.log(this.ennemies);
-                    console.log(this.allMonster);*/
+                    cptMonster = 0;
+                }
+                else {
+                    cptMonster++;
                 }
             }
 
             this.verifLifeGroupMonsters();
-
-            //sleep(1);
         }
         
         if(this.allies.size() > 0)
