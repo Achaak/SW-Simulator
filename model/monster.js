@@ -105,6 +105,15 @@ class Monster {
         this.ennemies = null;
         this.allies   = null;
         this.buildings_and_flags = null;
+
+        /* LEADER SKILL */
+            this.leaderSkillAtk   = null;
+            this.leaderSkillCRate = null;
+            this.leaderSkillCDmg  = null;
+            this.leaderSkillSpd   = null;
+            this.leaderSkillHp    = null;
+            this.leaderSkillDef   = null;
+        /* END LEADER SKILL */
     }
 
     setStatsRune(hp, atk, def, spd, cRate, cDmg, res, acc) {
@@ -133,6 +142,15 @@ class Monster {
     setEnnemies(ennemies) { this.ennemies = ennemies; }    
     setAllies  (allies)   { this.allies   = allies;   }
     setBuildingsAndFlags(buildings_and_flags) { this.buildings_and_flags = buildings_and_flags; }   
+    setLeaderSkill(leaderSkill) { 
+        if(leaderSkill.atk   != undefined) this.leaderSkillAtk   = leaderSkill.atk;
+        if(leaderSkill.cRate != undefined) this.leaderSkillCRate = leaderSkill.cRate;
+        if(leaderSkill.cDmg  != undefined) this.leaderSkillCDmg  = leaderSkill.cDmg;
+        if(leaderSkill.spd   != undefined) this.leaderSkillSpd   = leaderSkill.spd;
+        if(leaderSkill.hp    != undefined) this.leaderSkillHp    = leaderSkill.hp;
+        if(leaderSkill.def   != undefined) this.leaderSkillDef   = leaderSkill.def;
+    }
+
     setDamage(damage) {
         var hpLost = damage*this.dmgReduction();
 

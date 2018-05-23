@@ -6,6 +6,8 @@ class fight {
         this.allMonster = new groupMonster();
 
         this.buildings_and_flags = new buildings_and_flags();
+
+        this.leaderSkill = null;
     }
 
     setAlly  (monster) { this.allies.setMonster(monster);   this.allMonster.setMonster(monster); }
@@ -13,6 +15,7 @@ class fight {
 
     setGloryBuildings(e) { this.buildings_and_flags.setGloryBuildings(e); }
     setFlagsGvG      (e) { this.buildings_and_flags.setFlagsGvG(e);       }
+    setLeaderSkill   (e) { this.leaderSkill = e };
 
     setEnnemiesAndAlliesToAllMonster() {
         for (var i = 0; i < this.allies.size(); i++) {
@@ -30,10 +33,16 @@ class fight {
             this.allies.getMonster(i).setBuildingsAndFlags(this.buildings_and_flags);
         }
     }
+    setLeaderSkillToAllAllies() {
+        for (var i = 0; i < this.allies.size(); i++) {
+            this.allies.getMonster(i).setLeaderSkill(this.leaderSkill);
+        }
+    }
 
     start() {
         this.setEnnemiesAndAlliesToAllMonster();
         this.setBuildingsAndFlagsToAllAllies();
+        this.setLeaderSkillToAllAllies();
         this.allMonster.roundUp();
 
 
