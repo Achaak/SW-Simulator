@@ -18,9 +18,9 @@ class Tarq extends Monster{
             var dmgSkillUp1   = 0;
             var dmgSkillUp2   = 0;
             var dmgSkillUp3   = 0;
-            var cRateSkillUp1 = 0;
-            var cRateSkillUp2 = 0;
-            var cRateSkillUp3 = 0;
+            var effectRateSkillUp1 = 0;
+            var effectRateSkillUp2 = 0;
+            var effectRateSkillUp3 = 0;
 
             /* SKILL 1 */
                 switch (nbSkillUp1) {
@@ -79,9 +79,9 @@ class Tarq extends Monster{
             dmgSkillUp1,
             dmgSkillUp2,
             dmgSkillUp3,
-            cRateSkillUp1,
-            cRateSkillUp2,
-            cRateSkillUp3
+            effectRateSkillUp1,
+            effectRateSkillUp2,
+            effectRateSkillUp3
         );
     }
 
@@ -121,6 +121,7 @@ class Tarq extends Monster{
         var damage = 3.6*this.getActualAtk();
 
         damage = this.getHasCrit(this.AcRate, damage);
+        damage = this.getAtkBuffAndDebuff(damage);
         
         this.setHpFlat(this.getTarget().setDamage(damage)*0.3);
     }
@@ -130,6 +131,7 @@ class Tarq extends Monster{
         var damage = this.getActualAtk()*(this.getActualSpd()+140)/50;
 
         damage = this.getHasCrit(this.AcRate, damage);
+        damage = this.getAtkBuffAndDebuff(damage);
         
         this.getTarget().setDamage(damage);
 
@@ -166,9 +168,9 @@ class Tarq extends Monster{
                 var dmgSkillUp1   = 0;
                 var dmgSkillUp2   = 0;
                 var dmgSkillUp3   = 0;
-                var cRateSkillUp1 = 0;
-                var cRateSkillUp2 = 0;
-                var cRateSkillUp3 = 0;
+                var effectRateSkillUp1 = 0;
+                var effectRateSkillUp2 = 0;
+                var effectRateSkillUp3 = 0;
 
                 /* SKILL 1 */
                     switch (nbSkillUp1) {
@@ -226,9 +228,9 @@ class Tarq extends Monster{
                 dmgSkillUp1,
                 dmgSkillUp2,
                 dmgSkillUp3,
-                cRateSkillUp1,
-                cRateSkillUp2,
-                cRateSkillUp3
+                effectRateSkillUp1,
+                effectRateSkillUp2,
+                effectRateSkillUp3
             );
         }
 
@@ -265,6 +267,7 @@ class Tarq extends Monster{
             var damage = 3.6*this.getActualAtk();
     
             damage = this.getHasCrit(this.AcRate, damage);
+            damage = this.getAtkBuffAndDebuff(damage);
     
             this.setHpFlat(this.getTarget().setDamage(damage)*0.3);
         }
@@ -274,6 +277,7 @@ class Tarq extends Monster{
             var damage = damage = 3.7*this.getActualAtk();
 
             damage = this.getHasCrit(this.AcRate, damage);
+            damage = this.getAtkBuffAndDebuff(damage);
 
             for (var i = 0; i < 2; i++) 
                 this.getTarget().setDamage(damage);
@@ -310,9 +314,9 @@ class Tarq extends Monster{
                 var dmgSkillUp1   = 0;
                 var dmgSkillUp2   = 0;
                 var dmgSkillUp3   = 0;
-                var cRateSkillUp1 = 0;
-                var cRateSkillUp2 = 0;
-                var cRateSkillUp3 = 0;
+                var effectRateSkillUp1 = 0;
+                var effectRateSkillUp2 = 0;
+                var effectRateSkillUp3 = 0;
 
                 /* SKILL 1 */
                     switch (nbSkillUp1) {
@@ -320,11 +324,11 @@ class Tarq extends Monster{
                             break;
                         case 2: dmgSkillUp1 += 5;
                             break;
-                        case 3: cRateSkillUp1 += 10;
+                        case 3: effectRateSkillUp1 += 10;
                             break;
                         case 4: dmgSkillUp1 += 10;
                             break;
-                        case 5: cRateSkillUp1 += 15;
+                        case 5: effectRateSkillUp1 += 15;
                             break;
                     }
                 /* END SKILL 1 */
@@ -333,11 +337,11 @@ class Tarq extends Monster{
                     switch (nbSkillUp2) {
                         case 1: dmgSkillUp2 += 10;
                             break;
-                        case 2: cRateSkillUp2 += 10;
+                        case 2: effectRateSkillUp2 += 10;
                             break;
                         case 3: dmgSkillUp2 += 10;
                             break;
-                        case 4: cRateSkillUp2 += 15;
+                        case 4: effectRateSkillUp2 += 15;
                             break;
                         case 5: cdSkill2--;
                             break;
@@ -374,9 +378,9 @@ class Tarq extends Monster{
                 dmgSkillUp1,
                 dmgSkillUp2,
                 dmgSkillUp3,
-                cRateSkillUp1,
-                cRateSkillUp2,
-                cRateSkillUp3
+                effectRateSkillUp1,
+                effectRateSkillUp2,
+                effectRateSkillUp3
             );
         }
 
@@ -411,6 +415,7 @@ class Tarq extends Monster{
             var damage = 3.8*this.getActualAtk();
     
             damage = this.getHasCrit(this.AcRate, damage);
+            damage = this.getAtkBuffAndDebuff(damage);
             
             this.getTarget().setDamage(damage);
         }

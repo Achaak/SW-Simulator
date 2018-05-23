@@ -6,7 +6,7 @@ class Monster {
         cRate, cDmg, res, acc, 
         cdSkill2, cdSkill3, 
         dmgSkillUp1, dmgSkillUp2, dmgSkillUp3, 
-        cRateSkillUp1, cRateSkillUp2, cRateSkillUp3
+        effectRateSkillUp1, effectRateSkillUp2, effectRateSkillUp3
     ) {
         this.name    = name;
         this.element = element;
@@ -95,9 +95,9 @@ class Monster {
             this.dmgSkillUp2   = dmgSkillUp2;
             this.dmgSkillUp3   = dmgSkillUp3;
 
-            this.cRateSkillUp1 = cRateSkillUp1;
-            this.cRateSkillUp2 = cRateSkillUp2;
-            this.cRateSkillUp3 = cRateSkillUp3;
+            this.effectRateSkillUp1 = effectRateSkillUp1;
+            this.effectRateSkillUp2 = effectRateSkillUp2;
+            this.effectRateSkillUp3 = effectRateSkillUp3;
         /* ENS SKILL */
     
         this.atb = 0;
@@ -107,12 +107,12 @@ class Monster {
         this.buildings_and_flags = null;
 
         /* LEADER SKILL */
-            this.leaderSkillAtk   = null;
-            this.leaderSkillCRate = null;
-            this.leaderSkillCDmg  = null;
-            this.leaderSkillSpd   = null;
-            this.leaderSkillHp    = null;
-            this.leaderSkillDef   = null;
+            this.leaderSkillAtk   = 0;
+            this.leaderSkillCRate = 0;
+            this.leaderSkillCDmg  = 0;
+            this.leaderSkillSpd   = 0;
+            this.leaderSkillHp    = 0;
+            this.leaderSkillDef   = 0;
         /* END LEADER SKILL */
     }
 
@@ -143,12 +143,12 @@ class Monster {
     setAllies  (allies)   { this.allies   = allies;   }
     setBuildingsAndFlags(buildings_and_flags) { this.buildings_and_flags = buildings_and_flags; }   
     setLeaderSkill(leaderSkill) { 
-        if(leaderSkill.atk   != undefined) this.leaderSkillAtk   = leaderSkill.atk;
-        if(leaderSkill.cRate != undefined) this.leaderSkillCRate = leaderSkill.cRate;
-        if(leaderSkill.cDmg  != undefined) this.leaderSkillCDmg  = leaderSkill.cDmg;
-        if(leaderSkill.spd   != undefined) this.leaderSkillSpd   = leaderSkill.spd;
-        if(leaderSkill.hp    != undefined) this.leaderSkillHp    = leaderSkill.hp;
-        if(leaderSkill.def   != undefined) this.leaderSkillDef   = leaderSkill.def;
+        if(leaderSkill.atk   != undefined) this.leaderSkillAtk   = leaderSkill.atk/100;
+        if(leaderSkill.cRate != undefined) this.leaderSkillCRate = leaderSkill.cRate/100;
+        if(leaderSkill.cDmg  != undefined) this.leaderSkillCDmg  = leaderSkill.cDmg/100;
+        if(leaderSkill.spd   != undefined) this.leaderSkillSpd   = leaderSkill.spd/100;
+        if(leaderSkill.hp    != undefined) this.leaderSkillHp    = leaderSkill.hp/100;
+        if(leaderSkill.def   != undefined) this.leaderSkillDef   = leaderSkill.def/100;
     }
 
     setDamage(damage) {
@@ -197,17 +197,26 @@ class Monster {
         return prioTarget[0].monster;
     }
     getActualAtk() { 
-        var buffAndDebuffAtk  = (this.buffAtk   > 0 ? 0.5 : 0);
-            buffAndDebuffAtk -= (this.debuffAtk > 0 ? 0.5 : 0);
-            buffAndDebuffAtk  = (buffAndDebuffAtk == 0 ? 1 : buffAndDebuffAtk);
-
-        //var gloryBuilding = (this.buildings_and_flags != null ? this.buildings_and_flags.get : 0);
-        
-        return (this.Aatk)*buffAndDebuffAtk; 
-
         //(base atk * (1 + atk% from glory buildings + atk% from leader skills)) 
         // * skill multiplier * 
         // (1 + dmg from skillups% + base cd% + cd% from runes + cd% from glory building + cd% from leader skill)
+
+        var atkBuildingsAndFlags = 0;
+        if(this.buildings_and_flags != null) {
+            atkBuildingsAndFlags += this.buildings_and_flags.getAncient_sword();
+
+            switch (this.element) {
+                case 'water': atkBuildingsAndFlags += this.buildings_and_flags.getWater_sanctuary(); break;
+                case 'fire' : atkBuildingsAndFlags += this.buildings_and_flags.getFire_sanctuary() ; break;
+                case 'wind' : atkBuildingsAndFlags += this.buildings_and_flags.getWind_sanctuary() ; break;
+                case 'light': atkBuildingsAndFlags += this.buildings_and_flags.getLight_sanctuary(); break;
+                case 'dark' : atkBuildingsAndFlags += this.buildings_and_flags.getDark_sanctuary() ; break;
+            }
+            
+            atkBuildingsAndFlags += this.buildings_and_flags.getFlag_of_battle();
+        }
+        
+        return (this.Batk*(1 + atkBuildingsAndFlags + this.leaderSkillAtk)+(this.Tatk-this.Batk));
     }
     getActualSpd() { 
         var buffAndDebuffSpd  = (this.buffAtkSpd   > 0 ? 0.3 : 0);
@@ -218,10 +227,28 @@ class Monster {
     }
     
     getHasCrit(cRate, damage) {
+        // (base atk * (1 + atk% from glory buildings + atk% from leader skills)) 
+        // * skill multiplier * 
+        // (1 + dmg from skillups% + base cd% + cd% from runes + cd% from glory building + cd% from leader skill)
+
         var random = Math.random();
 
-        if(random < (cRate/100)) return damage*(1+(this.AcDmg/100));
+        var cDmgBuildingsAndFlags = 0;
+        if(this.buildings_and_flags != null) {
+            cDmgBuildingsAndFlags += this.buildings_and_flags.getFallen_Ancient_Guardian();
+            cDmgBuildingsAndFlags += this.buildings_and_flags.getFlag_of_rage();
+        }
+
+        if(random < ((cRate/100)+this.leaderSkillCRate)) return damage*(1 /*+ dmg from skillup*/ + (this.AcDmg/100) + cDmgBuildingsAndFlags + this.leaderSkillCDmg);
         else                     return damage;
+    }
+
+    getAtkBuffAndDebuff(damage) {
+        var buffAndDebuffAtk  = (this.buffAtk   > 0 ? 0.5 : 0);
+            buffAndDebuffAtk -= (this.debuffAtk > 0 ? 0.5 : 0);
+            buffAndDebuffAtk  = (buffAndDebuffAtk == 0 ? 1 : buffAndDebuffAtk);
+
+        return damage*buffAndDebuffAtk;
     }
 
     RoundUp() {
