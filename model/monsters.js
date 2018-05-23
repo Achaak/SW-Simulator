@@ -74,9 +74,11 @@ class Tarq extends Monster{
     }
 
     ai() {
+        this.newTarget();
+
         var random = Math.random();
 
-        if      (this.AcdSkill2 == 0 && this.AcdSkill3 == 0 && this.allies.size() > 1) {
+        if      (this.AcdSkill2 == 0 && this.AcdSkill3 == 0 && this.allies.size() > 2) {
             if      (random <= 0.165)                  this.skill1();
             else if (random > 0.165 && random <= 0.33) this.skill2();
             else                                       this.skill3();
@@ -103,11 +105,9 @@ class Tarq extends Monster{
         var skill = 1;
 
         var damage = 3.6*this.getActualAtk();
-
-        damage = this.getHasCrit(this.AcRate, damage, skill);
-        damage = this.getAtkBuffAndDebuff(damage);
+            damage = this.getHasCrit(this.TcRate, damage, skill);
         
-        this.setHpFlat(this.getTarget().setDamage(damage)*0.3);
+        this.setHpFlat(this.target.setDamage(damage)*0.3);
     }
     skill2() {
         // Attacks the enemy and increases your Attack Speed for 2 turns. Damage increases according to your Attack Speed. (Reusable in 3 turns).
@@ -115,11 +115,9 @@ class Tarq extends Monster{
         var skill = 2;
 
         var damage = this.getActualAtk()*(this.getActualSpd()+140)/50;
-
-        damage = this.getHasCrit(this.AcRate, damage, 2);
-        damage = this.getAtkBuffAndDebuff(damage);
+            damage = this.getHasCrit(this.TcRate, damage, 2);
         
-        this.getTarget().setDamage(damage);
+        this.target.setDamage(damage);
 
         this.buffAtkSpd = 2;
 
@@ -129,6 +127,19 @@ class Tarq extends Monster{
         // Perform a fierce cooperative attack with two fellow allies. (Reusable in 6 turns).
         // 4.1*{ATK} x3
         var skill = 3;
+        
+        var monsters = this.allies.getMonstersWithoutHim([this], 2);
+        monsters.forEach(monster => {
+            monster.setTarget(this.target);
+            monster.skill1();
+            monster.RoundUp();
+        });
+
+        var damage = 4.1*this.getActualAtk();
+            damage = this.getHasCrit(this.TcRate, damage, 3);
+        
+        this.target.setDamage(damage);
+
 
         this.resetSkill3();
     }
@@ -210,6 +221,8 @@ class Tarq extends Monster{
         }
     
         ai() {
+            this.newTarget();
+
             var random = Math.random();
     
             if      (this.AcdSkill2 == 0 && this.AcdSkill3 == 0) {
@@ -235,12 +248,10 @@ class Tarq extends Monster{
             // 3.6*{ATK}
             var skill = 1;
 
-            var damage = 3.6*this.getActualAtk();
+            var damage = 3.6*this.getActualAtk();    
+                damage = this.getHasCrit(this.TcRate, damage, skill);
     
-            damage = this.getHasCrit(this.AcRate, damage, skill);
-            damage = this.getAtkBuffAndDebuff(damage);
-    
-            this.setHpFlat(this.getTarget().setDamage(damage)*0.3);
+            this.setHpFlat(this.target.setDamage(damage)*0.3);
         }
         skill2() {
             // Bite your enemy continuously to inflict great damage. (Reusable in 3 turns).
@@ -248,18 +259,15 @@ class Tarq extends Monster{
             var skill = 2;
 
             var damage = damage = 3.7*this.getActualAtk();
-
-            damage = this.getHasCrit(this.AcRate, damage, 2);
-            damage = this.getAtkBuffAndDebuff(damage);
+                damage = this.getHasCrit(this.TcRate, damage, 2);
 
             for (var i = 0; i < 2; i++) 
-                this.getTarget().setDamage(damage);
+                this.target.setDamage(damage);
             
             this.resetSkill2();
         }
         skill3() {
             // Increases the Attack Power and Critical Rate of all allies for 3 turns. (Reusable in 5 turns).
-            // 4.1*{ATK} x3
             var skill = 3;
 
             this.resetSkill3();
@@ -345,6 +353,8 @@ class Tarq extends Monster{
         }
     
         ai() {
+            this.newTarget();
+
             var random = Math.random();
     
             if      (this.AcdSkill2 == 0 && this.AcdSkill3 == 0) {
@@ -366,23 +376,25 @@ class Tarq extends Monster{
         }
 
         skill1() {
+            // Attacks an enemy and looks for its weakness. This attack decreases the enemy's Defense for 2 turns with a 50% chance.
+            // 3.8*{ATK}           
             var skill = 1;
 
-            var damage = 3.8*this.getActualAtk();
-    
-            damage = this.getHasCrit(this.AcRate, damage, skill);
-            damage = this.getAtkBuffAndDebuff(damage);
+            var damage = 3.8*this.getActualAtk();    
+                damage = this.getHasCrit(this.TcRate, damage, skill);
             
-            this.getTarget().setDamage(damage);
+            this.target.setDamage(damage);
         }
         skill2() {
-            //{ATK}*({SPD} + 140)/50
+            // Attacks the enemy 2 times. Each attack has a 75% chance to leave a Brand and Silence the target for 2 turns. (Reusable in 4 turns).
+            // 3.0*{ATK} x2
             var skill = 2;
 
             this.resetSkill2();
         }
         skill3() {
-            //4.1*{ATK} x3
+            // Attacks an enemy and decreases its Attack Bar by 10% for each attack. The number of strikes will increase up to 7 hits accordingly to your Attack Speed. (Reusable in 6 turns).
+            // 1.8*{ATK} x7
             var skill = 3;
 
             this.resetSkill3();

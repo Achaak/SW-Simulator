@@ -18,6 +18,21 @@ class groupMonster {
 
     getMonster(i) { return this.group[i]; }
 
+    getMonstersWithoutHim(monsters, nb) {
+        var withoutMonsters = Array();
+
+        var cpt = 0;
+        while (cpt != nb) {
+            var random = getRandomInt(0, this.group.length);
+
+            if(!withoutMonsters.includes(this.group[random]) && !monsters.includes(this.group[random])) {
+                withoutMonsters.push(this.group[random]);
+                cpt++;
+            }
+        }
+        return withoutMonsters; 
+    }
+
     verifLifeMonsters() {
         for (var i = this.group.length-1; i>= 0; i--)
             if(this.group[i].Ahp <= 0)

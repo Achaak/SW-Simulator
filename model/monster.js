@@ -20,8 +20,8 @@ class Monster {
                 this.AcRate = cRate;
                 this.AcDmg  = cDmg;
                 this.Ares   = res;
-                this.Aacc   = acc; 
-            /* END ACTUAL */       
+                this.Aacc   = acc;
+            /* END ACTUAL */
 
             /* TOTAL */
                 this.Thp    = hp;
@@ -102,6 +102,7 @@ class Monster {
     
         this.atb = 0;
 
+        this.target   = null;
         this.ennemies = null;
         this.allies   = null;
         this.buildings_and_flags = null;
@@ -125,8 +126,8 @@ class Monster {
             this.AcRate = cRate;
             this.AcDmg  = cDmg;
             this.Ares   = res;
-            this.Aacc   = acc; 
-        /* END ACTUAL */       
+            this.Aacc   = acc;
+        /* END ACTUAL */
 
         /* TOTAL */
             this.Thp    += hp;
@@ -149,6 +150,13 @@ class Monster {
         if(leaderSkill.spd   != undefined) this.leaderSkillSpd   = leaderSkill.spd/100;
         if(leaderSkill.hp    != undefined) this.leaderSkillHp    = leaderSkill.hp/100;
         if(leaderSkill.def   != undefined) this.leaderSkillDef   = leaderSkill.def/100;
+
+        this.setAtkStartBattle();
+        this.setCRateStartBattle();
+        this.setCDmgStartBattle();
+        this.setSpdStartBattle();
+        this.setHpStartBattle();
+        this.setDefStartBattle();
     }
 
     setDamage(damage) {
@@ -161,10 +169,10 @@ class Monster {
     setHpFlat(hp) {
         this.Ahp += hp;
 
-        if(this.Ahp > this.Bhp) this.Ahp = this.Bhp;
+        if(this.Ahp > this.Thp) this.Ahp = this.Thp;
     }
 
-    getTarget() {
+    newTarget() {
         var prioTarget = new Array();
 
         for (var i = 0; i < this.ennemies.size(); i++) {
@@ -194,9 +202,12 @@ class Monster {
 
         prioTarget.sort(dynamicSort('-val'));
         
-        return prioTarget[0].monster;
+        this.target = prioTarget[0].monster;
     }
-    getActualAtk() { 
+    setTarget(target) {
+        this.target = target;
+    }
+    setAtkStartBattle() { 
         //(base atk * (1 + atk% from glory buildings + atk% from leader skills)) 
         // * skill multiplier * 
         // (1 + dmg from skillups% + base cd% + cd% from runes + cd% from glory building + cd% from leader skill)
@@ -216,14 +227,79 @@ class Monster {
             atkBuildingsAndFlags += this.buildings_and_flags.getFlag_of_battle();
         }
         
-        return (this.Batk*(1 + atkBuildingsAndFlags + this.leaderSkillAtk)+(this.Tatk-this.Batk));
+        this.Aatk = this.Tatk = (this.Batk*(1 + atkBuildingsAndFlags + this.leaderSkillAtk)+(this.Tatk-this.Batk));
+    }
+    setCRateStartBattle() {
+        this.TcRate += this.leaderSkillCRate*100;
+        if(this.TcRate > 100) this.TcRate = 100;
+
+        this.AcRate = this.TcRate;
+    }
+    setCDmgStartBattle() {
+        var cDmgBuildingsAndFlags = 0;
+        if(this.buildings_and_flags != null) {
+            cDmgBuildingsAndFlags += this.buildings_and_flags.getFallen_Ancient_Guardian();            
+            cDmgBuildingsAndFlags += this.buildings_and_flags.getFlag_of_rage();
+        }
+        
+        this.AcDmg = this.TcDmg = (this.BcDmg*(1 + cDmgBuildingsAndFlags + this.leaderSkillCDmg)+(this.TcDmg-this.BcDmg));
+    }
+    setSpdStartBattle() { 
+        var spdBuildingsAndFlags = 0;
+        if(this.buildings_and_flags != null) {
+            spdBuildingsAndFlags += this.buildings_and_flags.getAncient_sword();            
+            spdBuildingsAndFlags += this.buildings_and_flags.getFlag_of_battle();
+        }
+        
+        this.Aspd = this.Tspd = (this.Bspd*(1 + spdBuildingsAndFlags + this.leaderSkillSpd)+(this.Tspd-this.Bspd));
+    }
+    setHpStartBattle() {
+        var hpBuildingsAndFlags = 0;
+        if(this.buildings_and_flags != null) {
+            hpBuildingsAndFlags += this.buildings_and_flags.getCrystal_Altar();            
+            hpBuildingsAndFlags += this.buildings_and_flags.getFlag_of_hope();
+        }
+        
+        this.Ahp = this.Thp = (this.Bhp*(1 + hpBuildingsAndFlags + this.leaderSkillHp)+(this.Thp-this.Bhp));
+    }
+    setDefStartBattle() {
+        var defBuildingsAndFlags = 0;
+        if(this.buildings_and_flags != null) {
+            defBuildingsAndFlags += this.buildings_and_flags.getGuardstone();            
+            defBuildingsAndFlags += this.buildings_and_flags.getFlag_of_will();
+        }
+        
+        this.Adef = this.Tdef = (this.Bdef*(1 + defBuildingsAndFlags + this.leaderSkillDef)+(this.Tdef-this.Bdef));
+    }
+    getActualAtk() {
+        var buffAndDebuffAtk  = (this.buffAtk   > 0 ? 0.5 : 0);
+            buffAndDebuffAtk -= (this.debuffAtk > 0 ? 0.5 : 0);
+            buffAndDebuffAtk  = (buffAndDebuffAtk == 0 ? 1 : buffAndDebuffAtk);
+
+        return this.Aatk*buffAndDebuffAtk;
+    }
+    getActualCRate () {
+        return this.AcRate;
+    }
+    getActualCDmg () {
+        return this.AcDmg;
     }
     getActualSpd() { 
         var buffAndDebuffSpd  = (this.buffAtkSpd   > 0 ? 0.3 : 0);
             buffAndDebuffSpd -= (this.debuffAtkSpd > 0 ? 0.3 : 0);
             buffAndDebuffSpd  = (buffAndDebuffSpd == 0 ? 1 : buffAndDebuffSpd);
 
-        return (this.Aspd)*buffAndDebuffSpd; 
+        return this.Aspd*buffAndDebuffSpd; 
+    }
+    getActualHp () {
+        return this.Ahp;
+    }
+    getActualDef() {
+        var buffAndDebuffDef  = (this.buffDef   > 0 ? 0.7 : 0);
+            buffAndDebuffDef -= (this.debuffDef > 0 ? 0.7 : 0);
+            buffAndDebuffDef  = (buffAndDebuffDef == 0 ? 1 : buffAndDebuffDef);
+
+        return this.Adef*buffAndDebuffDef;
     }
     
     getHasCrit(cRate, damage, skill) {
@@ -233,12 +309,6 @@ class Monster {
 
         var random = Math.random();
 
-        var cDmgBuildingsAndFlags = 0;
-        if(this.buildings_and_flags != null) {
-            cDmgBuildingsAndFlags += this.buildings_and_flags.getFallen_Ancient_Guardian();
-            cDmgBuildingsAndFlags += this.buildings_and_flags.getFlag_of_rage();
-        }
-
         var dmgSkillUp = 0
         switch (skill) {
             case 1: dmgSkillUp += this.dmgSkillUp1/100; break;
@@ -246,16 +316,8 @@ class Monster {
             case 3: dmgSkillUp += this.dmgSkillUp3/100; break;
         }
 
-        if(random < ((cRate/100)+this.leaderSkillCRate)) return damage*(1 + dmgSkillUp + (this.AcDmg/100) + cDmgBuildingsAndFlags + this.leaderSkillCDmg);
+        if(random < (cRate/100)) return damage*(1 + dmgSkillUp + (this.getActualCDmg()/100));
         else                     return damage*(1 + dmgSkillUp);
-    }
-
-    getAtkBuffAndDebuff(damage) {
-        var buffAndDebuffAtk  = (this.buffAtk   > 0 ? 0.5 : 0);
-            buffAndDebuffAtk -= (this.debuffAtk > 0 ? 0.5 : 0);
-            buffAndDebuffAtk  = (buffAndDebuffAtk == 0 ? 1 : buffAndDebuffAtk);
-
-        return damage*buffAndDebuffAtk;
     }
 
     RoundUp() {
@@ -338,7 +400,7 @@ class Monster {
     setDebuffOblivion            (val) { this.debuffOblivion            = val; }
 
     dmgReduction() {
-        return 1000/(this.Adef*3.5+1140);
+        return 1000/(this.getActualDef()*3.5+1140);
     }
 
     resetSkill2() { this.AcdSkill2 = this.AcdSkill2; }
