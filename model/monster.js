@@ -310,6 +310,20 @@ class Monster {
         else                     return damage*(1 + dmgSkillUp);
     }
 
+    getHasAcc() {
+        var avantageElemental = 0;
+        if      (elementalAdvantage(this.element, this.target.element) == 1) avantageElemental += 15;
+        else if (elementalAdvantage(this.element, this.target.element) == 2) avantageElemental -= 15;
+
+        var chance = this.target.Tres - (this.Tacc+avantageElemental);
+        if(chance < 15) chance = 15;
+
+        if(getRandomInt(0, 100) >= chance)
+            return true;
+        else
+            return false;
+    }
+
     atbTick() {
        // console.log(this.atb);
         this.atb += (this.getActualSpd()*0.07);

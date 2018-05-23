@@ -18,7 +18,7 @@
         var perd = 0;
         
 
-        for (let index = 0; index < 100; index++) {
+        for (let index = 0; index < 1000; index++) {
             var newFight = new fight();
 
             newFight.setGloryBuildings({
@@ -47,7 +47,7 @@
                 /* HP    */ 4520,
                 /* ATK   */ 768,
                 /* DEF   */ 181,
-                /* SPD   */ 100,
+                /* SPD   */ 81,
                 /* CRATE */ 100,
                 /* CDMG  */ 86,
                 /* RES   */ 35,
@@ -71,6 +71,19 @@
             ));
 
             newFight.setEnnemy( new Tarq(
+                /* HP    */ 4401,
+                /* ATK   */ 1150,
+                /* DEF   */ 147,
+                /* SPD   */ 84,
+                /* CRATE */ 60,
+                /* CDMG  */ 160,
+                /* RES   */ 15,
+                /* ACC   */ 18,
+                6,
+                4,
+                2
+            ));
+            newFight.setEnnemy( new Sieq(
                 /* HP    */ 4401,
                 /* ATK   */ 1150,
                 /* DEF   */ 147,
