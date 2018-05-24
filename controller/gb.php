@@ -30,8 +30,12 @@
     
 
     <!-- SECTION -->
-        <section>
-            
+        <section>    
+            <div class=row>  
+                <?php include_once('../view/import/nav.php'); ?>
+                
+                <?php include_once('../view/import/interface-simulate.php'); ?>
+            </div>
         </section>
     <!-- END SECTION -->
 
@@ -48,6 +52,7 @@
     <!-- JAVASCRIPT -->
         <script src="framework/jquery/jquery.min.js"></script>
         <script src="framework/jquery-ui/jquery-ui.min.js"></script>
+        <script src="js/nav.js"></script>
         
         <script type="text/javascript">
         </script>

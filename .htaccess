@@ -40,9 +40,9 @@ RewriteEngine On
 #RewriteCond %{HTTPS} !on
 #RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
 
-RewriteRule ^$      controller/index.html  [L]
-RewriteRule ^home$  controller/index.html  [L]
+RewriteRule ^$      controller/index.php  [L]
+RewriteRule ^home$  controller/index.php  [L]
 
-RewriteRule ^dragon$ controller/db.html  [L]
-RewriteRule ^giant$  controller/gb.html  [L]
-RewriteRule ^lich$   controller/nb.html  [L]
+RewriteRule ^dragon$ controller/db.php  [L]
+RewriteRule ^giant$  controller/gb.php  [L]
+RewriteRule ^lich$   controller/nb.php  [L]

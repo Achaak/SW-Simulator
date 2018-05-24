@@ -1,11 +1,16 @@
 * {
     padding: 0;
     margin: 0;
-    font-family: Verdana, Geneva, sans-serif;
+    font-family: 'Roboto', Helvetica, Geneva, sans-serif;
     
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+}
+@font-face {
+
+    font-family: "Roboto";
+    src: url('../fonts/Roboto/Roboto-regular.ttf');
 }
 
 body {
@@ -26,15 +31,12 @@ h3 {
 
 article {
     padding: 20px 0px;
-    margin-left: 8.3vw;
 }
-nav.main {    
-    background-color: #101010;
-    height: 100vh;
-    position: fixed;
-    width: 8.3vw;
+section {
+    left: 90px;
     top: 0;
-    left: 0;
+    right: 0;
+    position: absolute;
 }
 
 /* COLOR */
@@ -43,6 +45,63 @@ nav.main {
     }
 /* END COLOR */
 
+
+/* NAV MAIN */
+    nav.main {    
+        background-color: #151515;
+        height: 100vh;
+        position: fixed;
+        width: 90px;
+        top: 0;
+        left: 0;
+        box-shadow: 0px 0 8px 0px black;
+        transition: all 0.2s;
+    }    
+    nav.main.open {  
+        width: 200px;
+    }
+        nav.main ul.icon-menu {
+            margin: 20px;
+            display: block;
+            width: 50px;
+            cursor: pointer;
+        }
+            nav.main ul.icon-menu li {
+                background-color: white;
+                height: 4px;
+                margin-bottom: 12px;
+                width: 100%;
+                list-style: none;
+                border-radius: 3px;
+            }
+        nav.main ul.menu {
+            margin: 20px;
+            display: block;
+            margin-top: 50px;
+        }
+            nav.main ul.menu li img {
+                width: 50px;
+            }
+                nav.main ul.menu li {
+                    list-style: none;
+                    margin-top: 15px;
+                }
+                    nav.main ul.menu li a {
+                        height: 50px;
+                        display: flex;
+                        align-items: center;
+                        text-decoration: none;
+                    }
+                        nav.main ul.menu li .li-name {
+                            display: none;
+                            margin-left: 20px;
+                            color: white;
+                            text-transform: uppercase;
+                            font-weight: bold;
+                        }
+
+                
+/* END NAV MAIN */
 
 
 
@@ -86,7 +145,7 @@ nav.main {
             filter: drop-shadow(0px 1px 1px black);
             box-shadow: 0 3px #521212;
 
-            transition: all 0.2s
+            transition: all 0.2s;
         }
     /* END BUTTON SIMULATE */
 /* END GB/DB/NB */ 
