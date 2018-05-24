@@ -14,8 +14,10 @@
 
     <!-- CSS -->
         <link type="text/css" rel="stylesheet" href="view/css/common.css">
+        
         <link type="text/css" rel="stylesheet" href="framework/flexbox/flexboxgrid.min.css">
         <link type="text/css" rel="stylesheet" href="framework/jquery-ui/jquery-ui.min.css">
+        <link type="text/css" rel="stylesheet" href="framework/loading-bar/loading-bar.css"/>
     <!-- END CSS -->
 
     <link rel="icon" href="">
@@ -52,7 +54,10 @@
     <!-- JAVASCRIPT -->
         <script src="framework/jquery/jquery.min.js"></script>
         <script src="framework/jquery-ui/jquery-ui.min.js"></script>
+        <script src="framework/loading-bar/loading-bar.js"></script>
+
         <script src="js/nav.js"></script>
+        <script src="js/simulate.js"></script>
         
         <script type="text/javascript">
         </script>

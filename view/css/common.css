@@ -37,7 +37,40 @@ section {
     top: 0;
     right: 0;
     position: absolute;
+    overflow-x: hidden;
 }
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+}
+
+
+/* BTN */
+    .btn {
+        text-decoration: none;
+        background-color: #C82323;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        display: block;
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: bold;
+        margin-top: 15px;
+        font-size: 1.05em;
+
+        filter: drop-shadow(0px 1px 1px black);
+        box-shadow: 0 3px #521212;
+
+        transition: all 0.2s;
+    }
+    .btn:hover {
+        margin-top: calc(15px + 2px);
+        background-color: #ad2020;
+        box-shadow: 0 1px #521212;
+    }
+/* END BTN */
+
 
 /* COLOR */
     h2, h3 {
@@ -106,46 +139,133 @@ section {
 
 
 /* GB/DB/NB */ 
-    .your-monster, .other-monster, .team {
-        width: 100%;
-        height: 200px;
-        background-color: #383838;
-        border-radius: 3px;
-        box-shadow: inset 0px 0px 10px -1px black;
+    .smlt-loading, .smlt-result {
+        display: none;
     }
 
-    /* YOUR MONSTER */        
-    /* END YOUR MONSTER */
+    /* CONFIGURATION */
+        /* BOX */
+            .your-monster, .other-monster, .team, .configure {
+                width: 100%;
+                background-color: #383838;
+                border-radius: 3px;
+                box-shadow: inset 0px 0px 10px -1px black;
+                padding: 10px;
+            }
+            .your-monster input.name-monster, .other-monster input.name-monster {
+                border: none;
+                width: 100%;
+                background-color: #383838;
+                border-bottom: 3px solid #6d6d6d;
+                color: #DCDCDC;
+                padding: 5px 10px;
+                font-size: 1em;
+                margin-bottom: 10px;
+            }
+                .your-monster .monster, .other-monster .monster {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-evenly;
+                    overflow-x: auto;
+                    height: 180px;
+                }
+                    .your-monster .monster img, .other-monster .monster img {
+                        width: 50px;
+                        height: 50px;
+                        margin: 2px;
+                        cursor: pointer;
+                        border-radius: 3px;
 
-    /* OTHER MONSTER */    
-    /* END OTHER MONSTER */
+                        filter: grayscale(100%);
+                        -webkit-filter: grayscale(100%);
+                        -moz-filter: grayscale(100%);
+                        -ms-filter: grayscale(100%);
+                        -o-filter: grayscale(100%);
+                    }
 
-    /* TEAM */    
-        .b-team {
-            margin-top: 40px;
-        }
-    /* END TEAM */
+            /* YOUR MONSTER */   
+                .team {
+                    height: 200px;
+                }    
+            /* END YOUR MONSTER */
+        
+            /* OTHER MONSTER */    
+            /* END OTHER MONSTER */
+        
+            /* CONFIGURE */    
+                .configure {
+                    color: #909090;
+                }
+                    .configure table {
+                        width: 100%;
+                    }
+                        .configure table th, .configure table td {
+                            text-align: left;
+                            padding: 3px 2px;
+                        }
+                        .configure table th {
+                            white-space: nowrap;
+                        }
+                            .configure table input[type='text'] {
+                                width: 100%;
+                                border: none;
+                                padding: 3px 7px;
+                                font-size: 1em;
+                                background-color: #383838;
+                                color: #DCDCDC;
+                                border-bottom: 2px solid #6d6d6d;
+                            }
+                            .configure table select {
+                                width: 100%;
+                                border-radius: 3px;
+                                background-color: #383838;
+                                color: #DCDCDC;
+                                border: 2px solid #6d6d6d;
+                                padding: 3px 7px;
+                                font-size: 1em;
+                            }
+            /* END CONFIGURE */
+        
+            /* TEAM */    
+                .b-team {
+                    margin-top: 40px;
+                }
+            /* END TEAM */
+        /* END BOX */
 
-    /* BUTTON SIMULATE */
-        .btn-simulate {
-            text-decoration: none;
-            background-color: #C82323;
-            color: white;
-            padding: 10px 15px;
-            border-radius: 5px;
-            display: block;
-            text-align: center;
-            width: 20%;
-            margin: auto;
-            margin-top: 15px;
-            text-transform: uppercase;
-            font-weight: bold;
-            font-size: 1.05em;
+        /* BUTTON SIMULATE */
+            .btn-simulate {
+                margin-left: auto;
+                margin-right: auto;
+                width: 20%;
+            }
+        /* END BUTTON SIMULATE */
+    /* END CONFIGURATION */
 
-            filter: drop-shadow(0px 1px 1px black);
-            box-shadow: 0 3px #521212;
+    /* LOADING */
+        /* LOADER */
+            article.smlt-loading {
+                padding: 0;
+                height: 100vh;
+            }
+                article.smlt-loading .b-circle {
+                    display: flex;
+                    height: 100vh;
+                    width: 100%
+                }
+                    #simulator-loader {
+                        width: 200px;
+                        height: 200px;
+                    }
+                        .ldBar-label {
+                            color: white;
+                            font-size: 2.1em;
+                            text-shadow: unset !important;
+                        }
+        /* LOADER */
+    /* END LOADING */
 
-            transition: all 0.2s;
-        }
-    /* END BUTTON SIMULATE */
+    /* RESULT */
+
+    /* END RESULT */
 /* END GB/DB/NB */ 

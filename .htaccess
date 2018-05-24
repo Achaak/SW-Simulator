@@ -1,15 +1,15 @@
-ErrorDocument 400 /home
-ErrorDocument 401 /home
-ErrorDocument 402 /home
-ErrorDocument 403 /home
-ErrorDocument 404 /home
-ErrorDocument 405 /home
-ErrorDocument 500 /home
-ErrorDocument 501 /home
-ErrorDocument 502 /home
-ErrorDocument 503 /home
-ErrorDocument 504 /home
-ErrorDocument 505 /home
+ErrorDocument 400 /import
+ErrorDocument 401 /import
+ErrorDocument 402 /import
+ErrorDocument 403 /import
+ErrorDocument 404 /import
+ErrorDocument 405 /import
+ErrorDocument 500 /import
+ErrorDocument 501 /import
+ErrorDocument 502 /import
+ErrorDocument 503 /import
+ErrorDocument 504 /import
+ErrorDocument 505 /import
 
 # GESTION DU GZIP
     <ifModule mod_gzip.c>
@@ -40,8 +40,8 @@ RewriteEngine On
 #RewriteCond %{HTTPS} !on
 #RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
 
-RewriteRule ^$      controller/index.php  [L]
-RewriteRule ^home$  controller/index.php  [L]
+RewriteRule ^$       controller/import.php  [L]
+RewriteRule ^import$ controller/import.php  [L]
 
 RewriteRule ^dragon$ controller/db.php  [L]
 RewriteRule ^giant$  controller/gb.php  [L]

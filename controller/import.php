@@ -30,8 +30,22 @@
     
 
     <!-- SECTION -->
-        <section>
-            
+        <section>    
+            <div class=row>  
+                <?php include_once('../view/import/nav.php'); ?>
+                
+                <article class="col-xs-12">
+                    <div class=row>    
+                        <div class="col-xs-12">
+                            <h2>Import</h2>
+                        </div>
+
+                        <div class="col-xs-12">
+                            
+                        </div>
+                    </div>
+                </article>
+            </div>
         </section>
     <!-- END SECTION -->
 
@@ -48,6 +62,7 @@
     <!-- JAVASCRIPT -->
         <script src="framework/jquery/jquery.min.js"></script>
         <script src="framework/jquery-ui/jquery-ui.min.js"></script>
+        <script src="js/nav.js"></script>
         
         <script type="text/javascript">
         </script>
