@@ -1,0 +1,54 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #333339;
+}
+
+h3 {
+    color: #e8920b;
+}
+
+
+/* GB/DB/NB */ 
+    .your-monster, .other-monster, .team {
+        width: 100%;
+        height: 200px;
+        background-color: #55555d;
+        border-radius: 3px;
+    }
+
+    /* YOUR MONSTER */        
+    /* END YOUR MONSTER */
+
+    /* OTHER MONSTER */    
+    /* END OTHER MONSTER */
+
+    /* TEAM */    
+        .b-team {
+            margin-top: 40px;
+        }
+    /* END TEAM */
+
+    /* BUTTON SIMULATE */
+        .btn-simulate {
+            text-decoration: none;
+            background-color: #e8920b;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: block;
+            text-align: center;
+            width: 10%;
+            margin: auto;
+            margin-top: 15px;
+        }
+    /* END BUTTON SIMULATE */
+/* END GB/DB/NB */ 
