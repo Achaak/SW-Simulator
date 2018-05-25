@@ -36,6 +36,7 @@ section {
     left: 90px;
     top: 0;
     right: 0;
+    bottom: 0;
     position: absolute;
     overflow-x: hidden;
 }
@@ -56,7 +57,6 @@ input:focus, textarea:focus, select:focus {
         text-align: center;
         text-transform: uppercase;
         font-weight: bold;
-        margin-top: 15px;
         font-size: 1.05em;
 
         filter: drop-shadow(0px 1px 1px black);
@@ -65,7 +65,7 @@ input:focus, textarea:focus, select:focus {
         transition: all 0.2s;
     }
     .btn:hover {
-        margin-top: calc(15px + 2px);
+        margin-top: 2px;
         background-color: #ad2020;
         box-shadow: 0 1px #521212;
     }
@@ -145,12 +145,13 @@ input:focus, textarea:focus, select:focus {
 
     /* CONFIGURATION */
         /* BOX */
-            .your-monster, .other-monster, .team, .configure {
+            .your-monster, .other-monster, .team, .configure, .result {
                 width: 100%;
                 background-color: #383838;
                 border-radius: 3px;
                 box-shadow: inset 0px 0px 10px -1px black;
                 padding: 10px;
+                margin-bottom: 40px;
             }
             .your-monster input.name-monster, .other-monster input.name-monster {
                 border: none;
@@ -162,14 +163,14 @@ input:focus, textarea:focus, select:focus {
                 font-size: 1em;
                 margin-bottom: 10px;
             }
-                .your-monster .monster, .other-monster .monster {
+                .your-monster .monsters, .other-monster .monsters {
                     display: flex;
                     flex-wrap: wrap;
                     justify-content: space-evenly;
                     overflow-x: auto;
                     height: 180px;
                 }
-                    .your-monster .monster img, .other-monster .monster img {
+                    .your-monster .monsters img, .other-monster .monsters img {
                         width: 50px;
                         height: 50px;
                         margin: 2px;
@@ -181,12 +182,20 @@ input:focus, textarea:focus, select:focus {
                         -moz-filter: grayscale(100%);
                         -ms-filter: grayscale(100%);
                         -o-filter: grayscale(100%);
+                        transition: all 0.2s;
+                    }
+                    .your-monster .monsters img.hide, .other-monster .monsters img.hide {
+                        display: none;
+                    }
+                    .your-monster .monsters img.select, .other-monster .monsters img.select {
+                        filter: unset;
+                        -webkit-filter: unset;
+                        -moz-filter: unset;
+                        -ms-filter: unset;
+                        -o-filter: unset;
                     }
 
             /* YOUR MONSTER */   
-                .team {
-                    height: 200px;
-                }    
             /* END YOUR MONSTER */
         
             /* OTHER MONSTER */    
@@ -206,13 +215,30 @@ input:focus, textarea:focus, select:focus {
                         .configure table th {
                             white-space: nowrap;
                         }
-                            .configure table input[type='text'] {
+                            .configure table input[type='number'] {
                                 width: 100%;
                                 border: none;
                                 padding: 3px 7px;
                                 font-size: 1em;
                                 background-color: #383838;
                                 color: #DCDCDC;
+                                border-bottom: 2px solid #6d6d6d;
+                                -moz-appearance: textfield;
+                            }
+                            input[type='number']::-webkit-outer-spin-button,
+                            input[type='number']::-webkit-inner-spin-button {
+                                -webkit-appearance: none;
+                            }
+                            .configure table input.value-leader {
+                                border: none;
+                                width: calc(100% - 20px);
+                            }
+                            .configure table .value-leader-ctn::after {
+                                content: '%';
+                                width: 20px;
+                            }
+                            .configure table .value-leader-ctn {
+                                display: block;
                                 border-bottom: 2px solid #6d6d6d;
                             }
                             .configure table select {
@@ -226,11 +252,70 @@ input:focus, textarea:focus, select:focus {
                             }
             /* END CONFIGURE */
         
-            /* TEAM */    
-                .b-team {
-                    margin-top: 40px;
-                }
+            /* TEAM */       
+                .team {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-evenly;
+                    color: #909090;
+                    min-height: 335px;
+                } 
+                    .team .monster {
+                        width: 170px;
+                        background-color: #2d2d2d;
+                        padding: 5px;
+                        border-radius: 5px;
+                        box-shadow: 0 0px 5px 0px black;
+                        margin: 10px;
+                    }
+                        .team .monster table {
+                            width: 100%;
+                        }
+                            .team .monster table img {
+                                width: 50px;
+                                height: 50px;
+                                margin: auto;
+                                display: block;
+                                border-radius: 3px
+                            }
+                            .team .monster table th, .team .monster table td {
+                                padding: 0px 2px;
+                            }
+                            .team .monster table th {
+                                font-weight: bold;
+                            }
+                            .team .monster table td {
+                                text-align: center;
+                            }
+                                .team .monster table input {                                
+                                    width: 100%;
+                                    border: none;
+                                    padding: 3px 7px;
+                                    font-size: 1em;
+                                    background-color: #2d2d2d;
+                                    color: #DCDCDC;
+                                    border-bottom: 2px solid #6d6d6d;
+                                    -moz-appearance: textfield;
+                                    text-align: center;
+                                }
+                                .team  .monster table .stat-ctn::before {
+                                    content: '+';
+                                    width: 20px;
+                                    margin-right: 5px;
+                                }
+                                .team  .monster table .stat-ctn {
+                                    display: block;
+                                }
+                                .team  .monster table .stat-ctn input {
+                                    width: calc(100% - 20px);                               
+                                }
             /* END TEAM */
+        
+            /* RESULT */    
+                .result {
+                    height: 200px;
+                }
+            /* END RESULT */
         /* END BOX */
 
         /* BUTTON SIMULATE */

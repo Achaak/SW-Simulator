@@ -14,7 +14,7 @@
 
     <!-- CSS -->
         <link type="text/css" rel="stylesheet" href="view/css/common.css">
-        
+
         <link type="text/css" rel="stylesheet" href="framework/flexbox/flexboxgrid.min.css">
         <link type="text/css" rel="stylesheet" href="framework/jquery-ui/jquery-ui.min.css">
         <link type="text/css" rel="stylesheet" href="framework/loading-bar/loading-bar.css"/>
@@ -57,7 +57,9 @@
         <script src="framework/loading-bar/loading-bar.js"></script>
 
         <script src="js/nav.js"></script>
-        <script src="js/simulate.js"></script>
+
+        <?php include_once('../view/import/js-simulator.php'); ?>
+        
         
         <script type="text/javascript">
         </script>

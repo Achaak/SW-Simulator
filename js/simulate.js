@@ -21,7 +21,7 @@ $(document).ready(function(){
         i++;
         bar.set(i);
 
-        tid = setTimeout(boucle, 100);
+        tid = setTimeout(boucle, 30);
 
         if(i == 100) {                        
             clearTimeout(tid);
@@ -31,4 +31,15 @@ $(document).ready(function(){
             });
         }
     }
+
+    
+    /* NEW SILUMATION */
+        $(".new-simulation").click(function(e){ 
+            e.preventDefault();
+
+            $('.smlt-result').hide("slide", { direction: "right" }, 500, function(){
+                $('.smlt-choose').show("slide", { direction: "left" });
+            });
+        }); 
+    /* END NEW SILUMATION */
 });

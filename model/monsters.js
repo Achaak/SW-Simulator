@@ -529,3 +529,10 @@
         }
     /* END Verdehile */
 /* END Vampire */
+
+var lClassMonsters = [
+    { 'class': Stella   , 'Stella'   : Stella    },
+    { 'class': Tarq     , 'Tarq'     : Tarq      }, 
+    { 'class': Sieq     , 'Sieq'     : Sieq      },
+    { 'class': Verdehile, 'Verdehile': Verdehile }
+];

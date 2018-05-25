@@ -57,7 +57,8 @@
         <script src="framework/loading-bar/loading-bar.js"></script>
 
         <script src="js/nav.js"></script>
-        <script src="js/simulate.js"></script>
+
+        <?php include_once('../view/import/js-simulator.php'); ?>
         
         <script type="text/javascript">
         </script>

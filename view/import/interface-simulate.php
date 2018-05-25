@@ -8,45 +8,9 @@
             <h3>Title</h3>
 
             <div class="your-monster">
-                <input type='text' class='name-monster' placeholder='name'>
-                <div class='monster'>
-                    <img src='view/pictures/icons/icon.ico'>
-                    <img src='view/pictures/icons/icon.ico'>
-                    <img src='view/pictures/icons/icon.ico'>
-                    <img src='view/pictures/icons/icon.ico'>
-                    <img src='view/pictures/icons/icon.ico'>
-                    <img src='view/pictures/icons/icon.ico'>
-                    <img src='view/pictures/icons/icon.ico'>
-                    <img src='view/pictures/icons/icon.ico'>
-                    <img src='view/pictures/icons/icon.ico'>
-                    <img src='view/pictures/icons/icon.ico'>
-                    <img src='view/pictures/icons/icon.ico'>
-                    <img src='view/pictures/icons/icon.ico'>
-                    <img src='view/pictures/icons/icon.ico'>
-                    <img src='view/pictures/icons/icon.ico'>
-                    <img src='view/pictures/icons/icon.ico'>
-                    <img src='view/pictures/icons/icon.ico'>
-                    <img src='view/pictures/icons/icon.ico'>
-                    <img src='view/pictures/icons/icon.ico'>
-                    <img src='view/pictures/icons/icon.ico'>
-                    <img src='view/pictures/icons/icon.ico'>
-                    <img src='view/pictures/icons/icon.ico'>
-                    <img src='view/pictures/icons/icon.ico'>
-                    <img src='view/pictures/icons/icon.ico'>
-                    <img src='view/pictures/icons/icon.ico'>
-                    <img src='view/pictures/icons/icon.ico'>
-                    <img src='view/pictures/icons/icon.ico'>
-                    <img src='view/pictures/icons/icon.ico'>
-                    <img src='view/pictures/icons/icon.ico'>
-                    <img src='view/pictures/icons/icon.ico'>
-                    <img src='view/pictures/icons/icon.ico'>
-                    <img src='view/pictures/icons/icon.ico'>
-                    <img src='view/pictures/icons/icon.ico'>
-                    <img src='view/pictures/icons/icon.ico'>
-                    <img src='view/pictures/icons/icon.ico'>
-                    <img src='view/pictures/icons/icon.ico'>
-                    <img src='view/pictures/icons/icon.ico'>
-                    <img src='view/pictures/icons/icon.ico'>
+                <input type='text' class='name-monster search-monster' placeholder='name'>
+                <div class='monsters'>
+
                 </div>
             </div>
         </div>
@@ -54,9 +18,8 @@
             <h3>Title</h3>
             
             <div class="other-monster">
-                <input type='text' class='name-monster' placeholder='name'>
-                <div class='monster'>
-
+                <input type='text' class='name-monster search-monster' placeholder='name'>
+                <div class='monsters'>
                 </div>
             </div>
         </div>
@@ -75,7 +38,7 @@
                                 <option value=''><option>
                             </select>
                         </td>
-                        <td><input type='text' placeholder='Ex: 33'></td>
+                        <td><span class='value-leader-ctn'><input type='number' placeholder='Ex: 33' class='value-leader'></span></td>
                     </tr>
                     <tr>
                         <th>Focus</th>
@@ -83,7 +46,7 @@
                     </tr>
                     <tr>
                         <th>Number</th>
-                        <td colspan='2'><input type='text' placeholder='Ex: 1000' value='1000'></td>
+                        <td colspan='2'><input type='number' placeholder='Ex: 1000' value='1000'></td>
                     </tr>
                 </table>
             </div>
@@ -118,6 +81,10 @@
 
 <article class="col-xs-12 smlt-result">
     <div class=row>     
+        <div class="col-xs-12">                                                
+            <h2>Title</h2>
+        </div>
+
         <div class="col-xs-12 b-team">                                                        
             <h3>Title</h3>
         
@@ -125,16 +92,16 @@
                 
             </div>
         </div>
-        <div class="col-xs-12">   
-            <div class=row>
-                <div class="col-xs-12 col-md-6">
-
-                <div class=row>
-                    
-                <div class="col-xs-12 col-md-6">
-                    <a href='' class='btn'>New</a>
-                <div class=row>
+                 
+        <div class="col-xs-12 col-md-6 b-result">                                                       
+            <h3>Title</h3>
+        
+            <div class='result'>
+                
             </div>
+        </div>
+        <div class="col-xs-12 col-md-6">
+            <a href='' class='btn new-simulation'>New</a>
         </div>
     </div>
 </article>
