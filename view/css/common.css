@@ -319,14 +319,23 @@ input:focus, textarea:focus, select:focus {
 
                 /* RESULT */    
                     .b-results-infos .results {
-                        height: 200px;
+                        width: 250px;
+                        max-width: 100%;
                         color: #909090;
-                    }
-
-                    .b-results-infos .results table th {
-                        text-align: left;
-                    }
+                        height: auto;
+                    } 
+                        .b-results-infos .results table {
+                            width: 100%;
+                        }
+                            .b-results-infos .results table th {
+                                text-align: left;
+                            }
                 /* END RESULT */
+
+                .new-simulation {
+                    width: 250px;
+                    max-width: 100%;
+                }
             /* END RESULTS INFOS */
         /* END BOX */
 

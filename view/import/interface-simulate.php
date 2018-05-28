@@ -32,20 +32,25 @@
                         <th>Leader</th>
                         <td>
                             <select>
-                                <option value=''><option>
-                                <option value=''>Je test<option>
-                                <option value=''><option>
-                                <option value=''><option>
+                                <option value=''></option>
+                                <option value='HP%'>HP</option>
+                                <option value='DEF%'>DEF</option>
+                                <option value='ATK%'>ATK</option>
+                                <option value='SPD'>SPD</option>
+                                <option value='CRATE'>CRATE</option>
+                                <option value='CDMG'>CDMG</option>
+                                <option value='RES'>RES</option>
+                                <option value='ACC'>ACC</option>
                             </select>
                         </td>
                         <td><span class='value-leader-ctn'><input type='number' placeholder='Ex: 33' class='value-leader'></span></td>
                     </tr>
                     <tr>
-                        <th>Focus</th>
+                        <th>Boss focus</th>
                         <td colspan='2'><input type='checkbox'></td>
                     </tr>
                     <tr>
-                        <th>Number</th>
+                        <th>Fighting number</th>
                         <td colspan='2'><input type='number' placeholder='Ex: 1000' value='1000'></td>
                     </tr>
                 </table>
@@ -100,12 +105,16 @@
                 <div class='results'>                
                     <table>
                         <tr>
-                            <th>Winrate</th>
+                            <th>Win rate</th>
                             <td>89%</td>
                         </tr>
                         <tr>
-                            <th>Time</th>
+                            <th>Average time</th>
                             <td>00:50 min</td>
+                        </tr>
+                        <tr>
+                            <th>Fighting number</th>
+                            <td>10 000</td>
                         </tr>
                     </table>
                 </div>

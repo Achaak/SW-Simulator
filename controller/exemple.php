@@ -48,7 +48,7 @@
                 /* ATK   */ 768,
                 /* DEF   */ 181,
                 /* SPD   */ 81,
-                /* CRATE */ 100,
+                /* CRATE */ 120,
                 /* CDMG  */ 86,
                 /* RES   */ 35,
                 /* ACC   */ 0,
@@ -56,11 +56,11 @@
                 0,
                 0
             ));
-            newFight.setAlly( new Sieq(
+            newFight.setAlly( new Stella(
                 /* HP    */ 4401,
                 /* ATK   */ 1150,
                 /* DEF   */ 147,
-                /* SPD   */ 84,
+                /* SPD   */ 80,
                 /* CRATE */ 60,
                 /* CDMG  */ 160,
                 /* RES   */ 15,

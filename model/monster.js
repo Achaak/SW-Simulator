@@ -39,7 +39,7 @@ class Monster {
                 this.Ares   =       (Rres   != undefined ? Rres   : res  );
                 this.Aacc   =       (Racc   != undefined ? Racc   : acc  );
             /* END ACTUAL */
-
+            
             /* TOTAL */
                 this.Thp    = this.Ahp;
                 this.Tatk   = this.Aatk;
@@ -260,9 +260,9 @@ class Monster {
     }
 
     getActualAtk() {
-        var buffAndDebuffAtk  = (this.buffAtk   > 0 ? 0.5 : 0);
+        var buffAndDebuffAtk  = 1;
+            buffAndDebuffAtk += (this.buffAtk   > 0 ? 0.5 : 0);
             buffAndDebuffAtk -= (this.debuffAtk > 0 ? 0.5 : 0);
-            buffAndDebuffAtk  = (buffAndDebuffAtk == 0 ? 1 : buffAndDebuffAtk);
 
         return this.Aatk*buffAndDebuffAtk;
     }
@@ -290,10 +290,10 @@ class Monster {
         return this.Ahp;
     }
     getActualDef() {
-        var buffAndDebuffDef  = (this.buffDef   > 0 ? 0.7 : 0);
+        var buffAndDebuffDef  = 1;
+            buffAndDebuffDef += (this.buffDef   > 0 ? 0.7 : 0);
             buffAndDebuffDef -= (this.debuffDef > 0 ? 0.7 : 0);
-            buffAndDebuffDef  = (buffAndDebuffDef == 0 ? 1 : buffAndDebuffDef);
-
+            
         return this.Adef*buffAndDebuffDef;
     }
     
@@ -310,7 +310,7 @@ class Monster {
         else                     return damage*(1 + dmgSkillUp);
     }
 
-    getHasAcc() {
+    getHasAcc(rateSkillUp, rateSkill) {
         var avantageElemental = 0;
         if      (elementalAdvantage(this.element, this.target.element) == 1) avantageElemental += 15;
         else if (elementalAdvantage(this.element, this.target.element) == 2) avantageElemental -= 15;
@@ -318,7 +318,11 @@ class Monster {
         var chance = this.target.Tres - (this.Tacc+avantageElemental);
         if(chance < 15) chance = 15;
 
-        if(getRandomInt(0, 100) >= chance)
+
+        var fRateSkill = rateSkill+rateSkillUp;
+        
+
+        if(getRandomInt(0, 100) >= chance && getRandomInt(0, 100) <= fRateSkill)
             return true;
         else
             return false;

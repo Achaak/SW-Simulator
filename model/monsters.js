@@ -108,16 +108,61 @@
                     damage = this.getHasCrit(this.getActualCRate(), damage, this.dmgSkillUp1);
                 
                 this.target.setDamage(damage);
+                
+                if(this.getHasAcc(this.effectRateSkillUp1, 50))
+                    this.target.setDebuffDef(2);
             }
             skill2() {
                 // Attacks the enemy 2 times. Each attack has a 75% chance to leave a Brand and Silence the target for 2 turns. (Reusable in 4 turns).
                 // 3.0*{ATK} x2
+                
+                for (var i = 0; i < 2; i++) {
+                    var damage = 3.0*this.getActualAtk();
+                        damage = this.getHasCrit(this.getActualCRate(), damage, this.dmgSkillUp2);
+
+                    this.target.setDamage(damage);
+
+                    if(this.getHasAcc(this.effectRateSkillUp2, 75))
+                        this.target.setDebuffBrand(2);
+
+                    if(this.getHasAcc(this.effectRateSkillUp2, 75))
+                        this.target.setDebuffSilence(2);
+                }
 
                 this.resetSkill2();
             }
             skill3() {
                 // Attacks an enemy and decreases its Attack Bar by 10% for each attack. The number of strikes will increase up to 7 hits accordingly to your Attack Speed. (Reusable in 6 turns).
                 // 1.8*{ATK} x7
+
+                // <125 speed: 2 hits
+                // 125 speed: 3 hits
+                // 150 speed: 4 hits
+                // 175 speed: 5 hits
+                // 200 speed: 6 hits
+                // >224 speed: 7 hits
+
+                var nbHit = 2;
+
+                if (this.getActualSpd() >= 125)
+                    nbHit = 3;
+                if (this.getActualSpd() >= 150)
+                    nbHit = 4;
+                if (this.getActualSpd() >= 175)
+                    nbHit = 5;
+                if (this.getActualSpd() >= 200)
+                    nbHit = 6;
+                if (this.getActualSpd() >= 224)
+                    nbHit = 7;
+                
+                for (var i = 0; i < nbHit; i++) {
+                    var damage = 1.8*this.getActualAtk();
+                    damage = this.getHasCrit(this.getActualCRate(), damage, this.dmgSkillUp3);
+
+                    this.target.setDamage(damage);
+
+                    this.target.setAtb(-10);
+                }
                 
                 this.resetSkill3();
             }
