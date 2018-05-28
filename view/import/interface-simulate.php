@@ -93,15 +93,27 @@
             </div>
         </div>
                  
-        <div class="col-xs-12 col-md-6 b-result">                                                       
-            <h3>Title</h3>
-        
-            <div class='result'>
-                
+        <div class="col-xs-12 b-results-infos">   
+            <div class="b-result">                                                       
+                <h3>Title</h3>
+            
+                <div class='results'>                
+                    <table>
+                        <tr>
+                            <th>Winrate</th>
+                            <td>89%</td>
+                        </tr>
+                        <tr>
+                            <th>Time</th>
+                            <td>00:50 min</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
-        </div>
-        <div class="col-xs-12 col-md-6">
-            <a href='' class='btn new-simulation'>New</a>
+            
+            <div class="">
+                <a href='' class='btn new-simulation'>New</a>
+            </div>
         </div>
     </div>
 </article>

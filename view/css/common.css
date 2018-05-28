@@ -8,7 +8,6 @@
     box-sizing: border-box;
 }
 @font-face {
-
     font-family: "Roboto";
     src: url('../fonts/Roboto/Roboto-regular.ttf');
 }
@@ -145,7 +144,7 @@ input:focus, textarea:focus, select:focus {
 
     /* CONFIGURATION */
         /* BOX */
-            .your-monster, .other-monster, .team, .configure, .result {
+            .your-monster, .other-monster, .team, .configure, .results {
                 width: 100%;
                 background-color: #383838;
                 border-radius: 3px;
@@ -311,11 +310,24 @@ input:focus, textarea:focus, select:focus {
                                 }
             /* END TEAM */
         
-            /* RESULT */    
-                .result {
-                    height: 200px;
-                }
-            /* END RESULT */
+            /* RESULTS INFOS */
+                .b-results-infos {
+                    display: flex;
+                    justify-content: space-between;
+                    flex-wrap: wrap;
+                }        
+
+                /* RESULT */    
+                    .b-results-infos .results {
+                        height: 200px;
+                        color: #909090;
+                    }
+
+                    .b-results-infos .results table th {
+                        text-align: left;
+                    }
+                /* END RESULT */
+            /* END RESULTS INFOS */
         /* END BOX */
 
         /* BUTTON SIMULATE */

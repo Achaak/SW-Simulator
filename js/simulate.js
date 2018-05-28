@@ -16,14 +16,14 @@ $(document).ready(function(){
     var bar = new ldBar(".ldBar");
 
     var tid = null;
-    var i = 0;
+    var cptLoading = 0;
     function boucle() {
-        i++;
-        bar.set(i);
+        cptLoading++;
+        bar.set(cptLoading);
 
         tid = setTimeout(boucle, 30);
 
-        if(i == 100) {                        
+        if(cptLoading == 100) {                        
             clearTimeout(tid);
 
             $('.smlt-loading').hide("slide", { direction: "left" }, 500, function(){
@@ -37,6 +37,8 @@ $(document).ready(function(){
         $(".new-simulation").click(function(e){ 
             e.preventDefault();
 
+            cptLoading = 0;
+            
             $('.smlt-result').hide("slide", { direction: "right" }, 500, function(){
                 $('.smlt-choose').show("slide", { direction: "left" });
             });
