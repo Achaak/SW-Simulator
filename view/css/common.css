@@ -166,33 +166,56 @@ input:focus, textarea:focus, select:focus {
                     display: flex;
                     flex-wrap: wrap;
                     justify-content: space-evenly;
-                    overflow-x: auto;
+                    overflow-x: hidden;
+                    overflow-y: auto;
                     height: 180px;
                 }
-                    .your-monster .monsters img, .other-monster .monsters img {
+                    .your-monster .b-monster, .other-monster .b-monster {
+                        position: relative;
                         width: 50px;
                         height: 50px;
-                        margin: 2px;
                         cursor: pointer;
-                        border-radius: 3px;
+                    }
+                    .your-monster .b-monster:hover span, .other-monster .b-monster:hover span {
+                        opacity: 1;
+                    }
+                        .your-monster .b-monster span, .other-monster .b-monster span {
+                            opacity: 0;
+                            position: absolute;
+                            z-index: 10;
+                            color: white;
+                            background-color: #2d2d2d;
+                            padding: 5px 10px;
+                            border-radius: 5px;
+                            transform: translate(-50%, -50%);
+                            left: 50%;
+                            top: 50%;
+                            font-size: 0.8em;
+                            transition: all 0.2s;
+                        }
+                        .your-monster .monsters img, .other-monster .monsters img {
+                            width: 50px;
+                            height: 50px;
+                            margin: 2px;
+                            border-radius: 3px;
 
-                        filter: grayscale(100%);
-                        -webkit-filter: grayscale(100%);
-                        -moz-filter: grayscale(100%);
-                        -ms-filter: grayscale(100%);
-                        -o-filter: grayscale(100%);
-                        transition: all 0.2s;
-                    }
-                    .your-monster .monsters img.hide, .other-monster .monsters img.hide {
-                        display: none;
-                    }
-                    .your-monster .monsters img.select, .other-monster .monsters img.select {
-                        filter: unset;
-                        -webkit-filter: unset;
-                        -moz-filter: unset;
-                        -ms-filter: unset;
-                        -o-filter: unset;
-                    }
+                            filter: grayscale(100%);
+                            -webkit-filter: grayscale(100%);
+                            -moz-filter: grayscale(100%);
+                            -ms-filter: grayscale(100%);
+                            -o-filter: grayscale(100%);
+                            transition: all 0.2s;
+                        }
+                        .your-monster .monsters img.hide, .other-monster .monsters img.hide {
+                            display: none;
+                        }
+                        .your-monster .monsters img.select, .other-monster .monsters img.select {
+                            filter: unset;
+                            -webkit-filter: unset;
+                            -moz-filter: unset;
+                            -ms-filter: unset;
+                            -o-filter: unset;
+                        }
 
             /* YOUR MONSTER */   
             /* END YOUR MONSTER */
@@ -257,16 +280,30 @@ input:focus, textarea:focus, select:focus {
                     flex-wrap: wrap;
                     justify-content: space-evenly;
                     color: #909090;
-                    min-height: 335px;
+                    min-height: 412px;
                 } 
                     .team .monster {
-                        width: 170px;
+                        width: 200px;
                         background-color: #2d2d2d;
                         padding: 5px;
                         border-radius: 5px;
                         box-shadow: 0 0px 5px 0px black;
                         margin: 10px;
+                        font-size: 0.9em;
+                        position: relative;
                     }
+                        .team .monster .delete {
+                            position: absolute;
+                            right: 10px;
+                            top: 5px;
+                            font-size: 1.2em;
+                            font-weight: bold;
+                            cursor: pointer;
+                            transition: all 0.3s;
+                        }
+                        .team .monster .delete:hover {
+                            color: #6f6f6f;
+                        }
                         .team .monster table {
                             width: 100%;
                         }
@@ -282,10 +319,14 @@ input:focus, textarea:focus, select:focus {
                             }
                             .team .monster table th {
                                 font-weight: bold;
+                                white-space: nowrap;
                             }
                             .team .monster table td {
                                 text-align: center;
                             }
+                                .team .monster .skillUp {
+                                    font-size: 0.9em;
+                                }
                                 .team .monster table input {                                
                                     width: 100%;
                                     border: none;

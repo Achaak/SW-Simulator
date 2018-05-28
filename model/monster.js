@@ -319,7 +319,7 @@ class Monster {
         if(chance < 15) chance = 15;
 
 
-        var fRateSkill = rateSkill+rateSkillUp;
+        var fRateSkill = rateSkill + rateSkillUp;
         
 
         if(getRandomInt(0, 100) >= chance && getRandomInt(0, 100) <= fRateSkill)
