@@ -60,7 +60,7 @@
         <div class="col-xs-12 b-team">                                                        
             <h3>Title</h3>
         
-            <div class='team'>
+            <div class='team t-configure'>
                 
             </div>
         </div>
@@ -93,7 +93,7 @@
         <div class="col-xs-12 b-team">                                                        
             <h3>Title</h3>
         
-            <div class='team'>
+            <div class='team t-result'>
                 
             </div>
         </div>
@@ -106,7 +106,7 @@
                     <table>
                         <tr>
                             <th>Win rate</th>
-                            <td>89%</td>
+                            <td class='winRate'>89%</td>
                         </tr>
                         <tr>
                             <th>Average time</th>

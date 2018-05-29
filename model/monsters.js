@@ -1,3 +1,6 @@
+var lClassMonsters = [];
+var lNameMonsters = [];
+
 /* Assassin */
     /* Stella */
         class Stella extends Monster{
@@ -167,6 +170,8 @@
                 this.resetSkill3();
             }
         }
+        lClassMonsters['Stella'] = Stella;
+        lNameMonsters.push('Stella');
     /* END Stella */
 /* END Assassin */
 
@@ -316,6 +321,8 @@
                 this.resetSkill3();
             }
         }
+        lClassMonsters['Tarq'] = Tarq;        
+        lNameMonsters.push('Tarq');
     /* END Tarq */
 
     /* Sieq */
@@ -450,6 +457,8 @@
                 this.resetSkill3();
             }
         }
+        lClassMonsters['Sieq'] = Sieq;
+        lNameMonsters.push('Sieq');
     /* END Sieq */
 /* END Hellhound */
 
@@ -572,12 +581,7 @@
                 });
             }
         }
+        lClassMonsters['Verdehile'] = Verdehile;
+        lNameMonsters.push('Verdehile');
     /* END Verdehile */
 /* END Vampire */
-
-var lClassMonsters = [
-    { 'class': Stella   , 'Stella'   : Stella    },
-    { 'class': Tarq     , 'Tarq'     : Tarq      }, 
-    { 'class': Sieq     , 'Sieq'     : Sieq      },
-    { 'class': Verdehile, 'Verdehile': Verdehile }
-];

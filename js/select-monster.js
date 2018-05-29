@@ -9,9 +9,10 @@ $(document).ready(function(){
     });
 
     $('.your-monster .b-monster, .other-monster .b-monster').click(function(e){ 
-        $('.team').append(
+        $('.t-configure').append(
             "<div class='monster'>" +
                 "<span class='delete'>x</span>" +
+                "<span class='name'>" + $(".monster", this).attr('name') + "</span>" +
                 "<table>" +
                     "<tr>" +
                         "<td colspan='3'>" +
@@ -21,22 +22,22 @@ $(document).ready(function(){
 
                     "<tr>" +
                         "<th>HP</th>" +
-                        "<td>" + $(".monster", this).attr('hp') + "</td>" +
+                        "<td class='Bhp'>" + $(".monster", this).attr('hp') + "</td>" +
                         "<td><span class='stat-ctn'><input type='number' class='Rhp'></span></td>" +
                     "</tr>" +
                     "<tr>" +
                         "<th>DEF</th>" +
-                        "<td>" + $(".monster", this).attr('def') + "</td>" +
+                        "<td class='Bdef'>" + $(".monster", this).attr('def') + "</td>" +
                         "<td><span class='stat-ctn'><input type='number' class='Rdef'></span></td>" +
                     "</tr>" +
                     "<tr>" +
                         "<th>ATK</th>" +
-                        "<td>" + $(".monster", this).attr('atk') + "</td>" +
+                        "<td class='Batk'>" + $(".monster", this).attr('atk') + "</td>" +
                         "<td><span class='stat-ctn'><input type='number' class='Ratk'></span></td>" +
                     "</tr>" +
                     "<tr>" +
                         "<th>SPD</th>" +
-                        "<td>" + $(".monster", this).attr('spd') + "</td>" +
+                        "<td class='Bspd'>" + $(".monster", this).attr('spd') + "</td>" +
                         "<td><span class='stat-ctn'><input type='number' class='Rspd'></span></td>" +
                     "</tr>" +
 

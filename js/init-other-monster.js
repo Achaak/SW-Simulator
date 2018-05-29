@@ -3,9 +3,9 @@ $(document).ready(function(){
 });
 
 function init_other_monsters() {
-    for (var i = 0; i < lClassMonsters.length; i++) {
-        var monster = new lClassMonsters[i].class;
-
+    for (var i = 0; i < lNameMonsters.length; i++) {
+        var monster = new lClassMonsters[lNameMonsters[i]];
+        
         $('.other-monster .monsters').append(
             "<div class='b-monster'>" +
                 "<span>" + monster.name + "</span>" +
