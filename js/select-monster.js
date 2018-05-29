@@ -73,8 +73,13 @@ $(document).ready(function(){
             "</div>"
         );
 
+        $('.btn-simulate').removeClass('desactivate');
+
         $('.team div:last-child() .delete').click(function(e){ 
             $('.monster:nth-child('+($(this).parent().index()+1)+')', '.team').remove();
+
+            if($('.team .monster').length == 0)
+                $('.btn-simulate').addClass('desactivate');
         });
     });
 });

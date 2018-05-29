@@ -63,6 +63,13 @@ input:focus, textarea:focus, select:focus {
 
         transition: all 0.2s;
     }
+    .btn.desactivate {
+        color: #929292 !important;
+        background-color: #6d6d6d !important;
+        box-shadow: 0 1px #333333 !important;
+        margin-top: 2px;
+        cursor: default;
+    }
     .btn:hover {
         margin-top: 2px;
         background-color: #ad2020;

@@ -51,7 +51,7 @@
                     </tr>
                     <tr>
                         <th>Fighting number</th>
-                        <td colspan='2'><input type='number' placeholder='Ex: 1000' value='1000'></td>
+                        <td colspan='2'><input class='nb-fight' type='number' placeholder='Ex: 1000' value='1000'></td>
                     </tr>
                 </table>
             </div>
@@ -66,7 +66,7 @@
         </div>
             
         <div class="col-xs-12">
-            <a href='' class='btn btn-simulate'>Simulate</a>
+            <a href='' class='btn btn-simulate desactivate'>Simulate</a>
         </div>
     </div>
 </article>
