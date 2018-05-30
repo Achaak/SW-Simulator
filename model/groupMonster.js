@@ -3,7 +3,12 @@ class groupMonster {
         this.group = new Array();
     }
 
-    setMonster(monster) { this.group.push(monster); }
+    setMonster(monster)   { this.group.push(monster); }
+    setMonsters(monsters) { 
+        for (var i = 0; i < monsters.length; i++) {
+            this.group.push(monsters[i]); 
+        }
+    }
 
     sortGroup() { this.group.sort(dynamicSort('-atb')); }
 

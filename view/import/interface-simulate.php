@@ -31,16 +31,16 @@
                     <tr>
                         <th>Leader</th>
                         <td>
-                            <select>
+                            <select class='type-leader'>
                                 <option value=''></option>
-                                <option value='HP%'>HP</option>
-                                <option value='DEF%'>DEF</option>
-                                <option value='ATK%'>ATK</option>
-                                <option value='SPD'>SPD</option>
-                                <option value='CRATE'>CRATE</option>
-                                <option value='CDMG'>CDMG</option>
-                                <option value='RES'>RES</option>
-                                <option value='ACC'>ACC</option>
+                                <option value='hp'>HP</option>
+                                <option value='def'>DEF</option>
+                                <option value='atk'>ATK</option>
+                                <option value='spd'>SPD</option>
+                                <option value='crate'>CRATE</option>
+                                <option value='cdmg'>CDMG</option>
+                                <option value='res'>RES</option>
+                                <option value='acc'>ACC</option>
                             </select>
                         </td>
                         <td><span class='value-leader-ctn'><input type='number' placeholder='Ex: 33' class='value-leader'></span></td>
@@ -48,10 +48,6 @@
                     <tr>
                         <th>Boss focus</th>
                         <td colspan='2'><input type='checkbox'></td>
-                    </tr>
-                    <tr>
-                        <th>Fighting number</th>
-                        <td colspan='2'><input class='nb-fight' type='number' placeholder='Ex: 1000' value='1000'></td>
                     </tr>
                 </table>
             </div>
@@ -114,7 +110,7 @@
                         </tr>
                         <tr>
                             <th>Fighting number</th>
-                            <td>10 000</td>
+                            <td>1000</td>
                         </tr>
                     </table>
                 </div>

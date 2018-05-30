@@ -1,4 +1,6 @@
-$(document).ready(function(){     
+var classEnnemiesWaves = null;
+
+$(document).ready(function(){
     /* SIMULATION */  
         $(".btn-simulate").click(function(e){ 
             e.preventDefault();
@@ -6,17 +8,20 @@ $(document).ready(function(){
             if($('.team .monster').length != 0) {
                 $('.smlt-choose').hide("slide", { direction: "left" }, 500, function(){
                     $('.smlt-loading').show("slide", { direction: "right" });
-                    
-                    var nbFight = $('.nb-fight').val();
 
-                    simulateTeam(nbFight);
+                    simulateTeam();
                 });
             }
         });   
 
         var lStatsMonsters = null;
-        function simulateTeam(nbFight) {  
-            lStatsMonsters = Array();          
+        var lOtherStats = null;
+        function simulateTeam() {  
+            var win = 0, lose = 0;
+            lStatsMonsters = Array();
+
+            $('.t-result').empty();
+
             for (var i = 0; i < $('.t-configure .monster').length; i++) {
                 var selector = '.t-configure .monster:nth-child('+(i+1)+')';
 
@@ -24,10 +29,15 @@ $(document).ready(function(){
                 
                 var src   = $('.t-configure .monster:nth-child('+(i+1)+') img').attr('src');
 
-                var hp    = parseInt($('.Bhp' , selector).text()) + ( !Number.isInteger(parseInt($('.Rhp' , selector).val())) ? 0 : parseInt($('.Rhp' , selector).val()) );
-                var atk   = parseInt($('.Batk', selector).text()) + ( !Number.isInteger(parseInt($('.Ratk', selector).val())) ? 0 : parseInt($('.Ratk', selector).val()) );
-                var def   = parseInt($('.Bdef', selector).text()) + ( !Number.isInteger(parseInt($('.Rdef', selector).val())) ? 0 : parseInt($('.Rdef', selector).val()) );
-                var spd   = parseInt($('.Bspd', selector).text()) + ( !Number.isInteger(parseInt($('.Rspd', selector).val())) ? 0 : parseInt($('.Rspd', selector).val()) );
+                var Bhp    = parseInt($('.Bhp' , selector).text());
+                var Batk   = parseInt($('.Batk', selector).text());
+                var Bdef   = parseInt($('.Bdef', selector).text());
+                var Bspd   = parseInt($('.Bspd', selector).text());
+
+                var Rhp    = ( !Number.isInteger(parseInt($('.Rhp' , selector).val())) ? 0 : parseInt($('.Rhp' , selector).val()) );
+                var Ratk   = ( !Number.isInteger(parseInt($('.Ratk', selector).val())) ? 0 : parseInt($('.Ratk', selector).val()) );
+                var Rdef   = ( !Number.isInteger(parseInt($('.Rdef', selector).val())) ? 0 : parseInt($('.Rdef', selector).val()) );
+                var Rspd   = ( !Number.isInteger(parseInt($('.Rspd', selector).val())) ? 0 : parseInt($('.Rspd', selector).val()) );
 
                 var crate = ( !Number.isInteger(parseInt($('.Rcrate', selector).val())) ? 0 : parseInt($('.Rcrate', selector).val()) );
                 var cdmg  = ( !Number.isInteger(parseInt($('.Rcdmg' , selector).val())) ? 0 : parseInt($('.Rcdmg' , selector).val()) );
@@ -41,10 +51,10 @@ $(document).ready(function(){
                 lStatsMonsters.push({ 
                     "name" : name,
 
-                    "hp"  : hp,
-                    "atk" : atk,
-                    "def" : def,
-                    "spd" : spd,
+                    "Bhp"  : Bhp , 'Rhp'  : Rhp,
+                    "Batk" : Batk, 'Ratk' : Ratk,
+                    "Bdef" : Bdef, 'Rdef' : Rdef,
+                    "Bspd" : Bspd, 'Rspd' : Rspd,
 
                     "crate" : crate,
                     "cdmg"  : cdmg,
@@ -68,19 +78,19 @@ $(document).ready(function(){
         
                             "<tr>" +
                                 "<th>HP</th>" +
-                                "<td>" + hp + "</td>" +
+                                "<td>" + (Bhp  + Rhp ) + "</td>" +
                             "</tr>" +
                             "<tr>" +
                                 "<th>DEF</th>" +
-                                "<td>" + atk + "</td>" +
+                                "<td>" + (Batk + Ratk) + "</td>" +
                             "</tr>" +
                             "<tr>" +
                                 "<th>ATK</th>" +
-                                "<td>" + def + "</td>" +
+                                "<td>" + (Bdef + Rdef) + "</td>" +
                             "</tr>" +
                             "<tr>" +
                                 "<th>SPD</th>" +
-                                "<td>" + spd + "</td>" +
+                                "<td>" + (Bspd + Rspd) + "</td>" +
                             "</tr>" +
         
                             "<tr>" +
@@ -116,16 +126,16 @@ $(document).ready(function(){
                     "</div>"
                 );
             }
-
-
-            var gagne = 0, perd = 0;
             
+            lOtherStats = {
+                'leaderType' : $('.type-leader').val(), 'leaderValue' : $('.value-leader').val(), 
+            }
 
             var cptFight = 0, limit = 1000; 
             var processor = setInterval(function() { 
-                var newFight = new fight();
+                var newFights = new fights();
 
-                newFight.setGloryBuildings({
+                newFights.setGloryBuildings({
                     crystal_Rock	        : 0,
                     guardstone	            : 1,
                     water_sanctuary	        : 10,
@@ -139,20 +149,20 @@ $(document).ready(function(){
                     arcane_Booster_Tower    : 0,
                     fallen_Ancient_Guardian : 10
                 });
-                newFight.setFlagsGvG({
+                newFights.setFlagsGvG({
                     flag_of_rage  : 0,
                     flag_of_hope  : 0,
                     flag_of_will  : 0,
                     flag_of_battle: 0
                 });
-                newFight.setLeaderSkill({ spd : 19 });
+                newFights.setLeaderSkill({ "leaderType" : lOtherStats.leaderType, 'leaderValue': lOtherStats.leaderValue });
                 
                 for (var i = 0; i < lStatsMonsters.length; i++) {
-                    newFight.setAlly( new lClassMonsters[lStatsMonsters[i].name](    
-                        /* HP    */ lStatsMonsters[i].hp,
-                        /* ATK   */ lStatsMonsters[i].atk,
-                        /* DEF   */ lStatsMonsters[i].def,
-                        /* SPD   */ lStatsMonsters[i].spd,
+                    newFights.setAlly( new lClassMonsters[lStatsMonsters[i].name](    
+                        /* HP    */ lStatsMonsters[i].Rhp,
+                        /* ATK   */ lStatsMonsters[i].Ratk,
+                        /* DEF   */ lStatsMonsters[i].Rdef,
+                        /* SPD   */ lStatsMonsters[i].Rspd,
                         /* CRATE */ lStatsMonsters[i].crate,
                         /* CDMG  */ lStatsMonsters[i].cdmg,
                         /* RES   */ lStatsMonsters[i].res,
@@ -163,57 +173,32 @@ $(document).ready(function(){
                     ));
                 }
 
-                newFight.setEnnemy( new Tarq(
-                    /* HP    */ 4401,
-                    /* ATK   */ 1150,
-                    /* DEF   */ 147,
-                    /* SPD   */ 84,
-                    /* CRATE */ 60,
-                    /* CDMG  */ 160,
-                    /* RES   */ 15,
-                    /* ACC   */ 18,
-                    6,
-                    4,
-                    2
-                ));
-                newFight.setEnnemy( new Sieq(
-                    /* HP    */ 4401,
-                    /* ATK   */ 1150,
-                    /* DEF   */ 147,
-                    /* SPD   */ 84,
-                    /* CRATE */ 60,
-                    /* CDMG  */ 160,
-                    /* RES   */ 15,
-                    /* ACC   */ 18,
-                    6,
-                    4,
-                    2
-                ));
-                newFight.setEnnemy( new Sieq(
-                    /* HP    */ 4401,
-                    /* ATK   */ 1150,
-                    /* DEF   */ 147,
-                    /* SPD   */ 84,
-                    /* CRATE */ 60,
-                    /* CDMG  */ 160,
-                    /* RES   */ 15,
-                    /* ACC   */ 18,
-                    6,
-                    4,
-                    2
-                ));
+                var ennemiesWaves = [];
+                for (var i = 0; i < classEnnemiesWaves.length; i++) {
+                    var arrayTmp = []
+                    for (var j = 0; j < classEnnemiesWaves[i].length; j++) {
+                        arrayTmp.push(new classEnnemiesWaves[i][j]);
+                    }
+                    ennemiesWaves.push(arrayTmp);
+                }
 
-                if(newFight.start())
-                    gagne++;
-                else
-                    perd++;
+                newFights.setEnnemiesWaves(ennemiesWaves);
 
+                var results = newFights.start();
                 
-                loadingCircle(Math.round((100/limit)*cptFight));
+
+                /* LOADING CIRCLE */
+                    loadingCircle(Math.round((100/limit)*cptFight));
+                /* END LOADING CIRCLE */
+
+                /* WIN RATE */
+                    if(results.win) win++;
+                    else            lose++;
+                /* WIN RATE */
 
                 if(++cptFight == limit)  { 
                     clearInterval(processor); 
-                    $('.winRate').text(((100*gagne)/(gagne+perd)) + "%");
+                    $('.winRate').text(((100*win)/(win+lose)) + "%");
                 }
             }, 1); 
             
@@ -230,32 +215,6 @@ $(document).ready(function(){
                 });
             }
         }
-
-        /*function test2() { 
-            var result2 = document.getElementById('result2'); 
-
-            var start = new Date().getTime(); 
-
-            var i = 0, limit = 200, busy = false; 
-            var processor = setInterval(function() { 
-                if(!busy) { 
-                    busy = true; 
-
-                    result2.value =  'time=' +  
-                    (new Date().getTime() - start) + ' [i=' + i + ']'; 
-
-                    process(); 
-
-                    if(++i == limit)  { 
-                        clearInterval(processor); 
-                        result2.value = 'time=' +  
-                        (new Date().getTime() - start) + ' [done]'; 
-                    } 
-
-                    busy = false; 
-                } 
-            }, 100); 
-        }*/
     /* END SIMULATION */
 
     

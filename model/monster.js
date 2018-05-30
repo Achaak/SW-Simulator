@@ -127,13 +127,13 @@ class Monster {
     setAllies  (allies)   { this.allies   = allies;   }
     setBuildingsAndFlags(buildings_and_flags) { this.buildings_and_flags = buildings_and_flags; }   
     setLeaderSkill(leaderSkill) { 
-        if(leaderSkill.atk   != undefined) this.leaderSkillAtk   = leaderSkill.atk/100;
-        if(leaderSkill.cRate != undefined) this.leaderSkillCRate = leaderSkill.cRate/100;
-        if(leaderSkill.cDmg  != undefined) this.leaderSkillCDmg  = leaderSkill.cDmg/100;
-        if(leaderSkill.spd   != undefined) this.leaderSkillSpd   = leaderSkill.spd/100;
-        if(leaderSkill.hp    != undefined) this.leaderSkillHp    = leaderSkill.hp/100;
-        if(leaderSkill.def   != undefined) this.leaderSkillDef   = leaderSkill.def/100;
-
+        if(leaderSkill.leaderType == 'atk'  ) this.leaderSkillAtk   = leaderSkill.leaderValue/100;
+        if(leaderSkill.leaderType == 'cRate') this.leaderSkillCRate = leaderSkill.leaderValue/100;
+        if(leaderSkill.leaderType == 'cDmg' ) this.leaderSkillCDmg  = leaderSkill.leaderValue/100;
+        if(leaderSkill.leaderType == 'spd'  ) this.leaderSkillSpd   = leaderSkill.leaderValue/100;
+        if(leaderSkill.leaderType == 'hp'   ) this.leaderSkillHp    = leaderSkill.leaderValue/100;
+        if(leaderSkill.leaderType == 'def'  ) this.leaderSkillDef   = leaderSkill.leaderValue/100;
+        
         this.setAtkStartBattle();
         this.setCRateStartBattle();
         this.setCDmgStartBattle();

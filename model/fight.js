@@ -5,7 +5,7 @@ class fight {
 
         this.allMonster = new groupMonster();
 
-        this.buildings_and_flags = new buildings_and_flags();
+        this.buildings_and_flags = null;
 
         this.leaderSkill = null;
     }
@@ -13,9 +13,8 @@ class fight {
     setAlly  (monster) { this.allies.setMonster(monster);   this.allMonster.setMonster(monster); }
     setEnnemy(monster) { this.ennemies.setMonster(monster); this.allMonster.setMonster(monster); }
 
-    setGloryBuildings(e) { this.buildings_and_flags.setGloryBuildings(e); }
-    setFlagsGvG      (e) { this.buildings_and_flags.setFlagsGvG(e);       }
-    setLeaderSkill   (e) { this.leaderSkill = e };
+    setBuildingsAndFlags(e) { this.buildings_and_flags = e; }
+    setLeaderSkill      (e) { this.leaderSkill         = e; }
 
     setEnnemiesAndAlliesToAllMonster() {
         for (var i = 0; i < this.allies.size(); i++) {
@@ -28,21 +27,9 @@ class fight {
             this.ennemies.getMonster(i).setAllies(this.ennemies);
         }
     }
-    setBuildingsAndFlagsToAllAllies() {
-        for (var i = 0; i < this.allies.size(); i++) {
-            this.allies.getMonster(i).setBuildingsAndFlags(this.buildings_and_flags);
-        }
-    }
-    setLeaderSkillToAllAllies() {
-        for (var i = 0; i < this.allies.size(); i++) {
-            this.allies.getMonster(i).setLeaderSkill(this.leaderSkill);
-        }
-    }
 
     start() {
         this.setEnnemiesAndAlliesToAllMonster();
-        this.setBuildingsAndFlagsToAllAllies();
-        this.setLeaderSkillToAllAllies();
 
         while(this.getBoolFightFinish()) {
             this.allMonster.atbTick();
@@ -67,10 +54,11 @@ class fight {
             this.verifLifeGroupMonsters();
         }
         
+        var win = false;
         if(this.allies.size() > 0)
-            return true;
-        else
-            return false;
+            win = true;
+            
+        return {'win' : win};
     }
 
     getBoolFightFinish() {

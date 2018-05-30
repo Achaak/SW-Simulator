@@ -6,11 +6,11 @@ $(document).ready(function(){
 
     $('.search-monster').keyup(function(e){ 
         if($(this).val() != '') {
-            $(this).parent().find('.monsters .monster').addClass('hide');
+            $(this).parent().find('.monsters .b-monster').addClass('hide');
 
-            $(this).parent().find('.monsters .monster[name*="'+$(this).val()+'"]').removeClass('hide');
+            $(this).parent().find('.monsters .b-monster span:contains("'+$(this).val()+'")').parent().removeClass('hide');
         }
         else
-            $(this).parent().find('.monsters .monster').removeClass('hide');
+            $(this).parent().find('.monsters .b-monster').removeClass('hide');
     });
 });
