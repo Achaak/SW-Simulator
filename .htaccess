@@ -41,8 +41,16 @@ RewriteEngine On
 #RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
 
 RewriteRule ^$       controller/import.php  [L]
-RewriteRule ^import$ controller/import.php  [L]
+RewriteRule ^Import$ controller/import.php  [L]
 
-RewriteRule ^dragon$ controller/db.php  [L]
-RewriteRule ^giant$  controller/gb.php  [L]
-RewriteRule ^lich$   controller/nb.php  [L]
+RewriteRule ^Dragon$ controller/db.php  [L]
+RewriteRule ^Giant$  controller/gb.php  [L]
+RewriteRule ^Lich$   controller/nb.php  [L]
+
+RewriteRule ^HallOfMagic$   controller/hom.php  [L]
+
+RewriteRule ^HallOfWater$   controller/howa.php     [L]
+RewriteRule ^HallOfFire$    controller/hof.php      [L]
+RewriteRule ^HallOfWind$    controller/howi.php     [L]
+RewriteRule ^HallOfLight$   controller/hol.php      [L]
+RewriteRule ^HallOfDark$    controller/hod.php      [L]

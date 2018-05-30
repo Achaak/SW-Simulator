@@ -97,7 +97,7 @@ input:focus, textarea:focus, select:focus {
         transition: all 0.2s;
     }    
     nav.main.open {  
-        width: 200px;
+        width: 240px;
     }
         nav.main ul.icon-menu {
             margin: 20px;
