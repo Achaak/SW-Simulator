@@ -14,6 +14,7 @@
 
     <!-- CSS -->
         <link type="text/css" rel="stylesheet" href="view/css/common.css">
+        <link type="text/css" rel="stylesheet" href="view/css/import.css">
         <link type="text/css" rel="stylesheet" href="framework/flexbox/flexboxgrid.min.css">
         <link type="text/css" rel="stylesheet" href="framework/jquery-ui/jquery-ui.min.css">
     <!-- END CSS -->
@@ -41,7 +42,12 @@
                         </div>
 
                         <div class="col-xs-12">
-                            
+                            <form class='import-json'>
+                                <div class="input-file-container">
+                                    <input type="file" id="input-file" class='input-file' name="input-file" accept=".json">
+                                    <label for="input-file" class='text-input-file'>Select JSON file</label>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </article>
@@ -65,6 +71,31 @@
         <script src="js/nav.js"></script>
         
         <script type="text/javascript">
+            $(document).ready(function(){               
+                $(".input-file").change(function(e){
+                    $('.text-input-file').text($(this).prop('files')[0].name);
+                    
+                    var formData = new FormData();            
+                    var files = $(this).prop('files')[0];
+                    formData.append('file', files);
+
+                    $.ajax({    
+                        url: "model/php/read-JSON.php", 
+                        type: "POST",
+                        data: formData,
+                        dataType: 'json',
+                        contentType: false,
+                        processData: false,
+                        success: function(results){  
+                            if(results.codeError == 0) {
+                                var unit_list = results.contentJson.unit_list;
+
+                                console.log(unit_list);
+                            }
+                        }
+                    });
+                });
+            });
         </script>
     <!-- END JAVASCRIPT -->
 </body>
