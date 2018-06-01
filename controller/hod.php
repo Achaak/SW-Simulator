@@ -31,6 +31,16 @@
     
     
 
+    <!-- MODALE BUILDINGS -->
+        <?php include_once('../view/import/modale-buildings_and_Flags.php'); ?>
+    <!-- END MODALE BUILDINGS -->
+    
+    <!-- MODALE BUILDINGS -->
+        <?php include_once('../view/import/modale-runes.php'); ?>
+    <!-- END MODALE BUILDINGS -->
+    
+    
+
     <!-- SECTION -->
         <section>    
             <div class=row>  

@@ -54,3 +54,8 @@ RewriteRule ^HallOfFire$    controller/hof.php      [L]
 RewriteRule ^HallOfWind$    controller/howi.php     [L]
 RewriteRule ^HallOfLight$   controller/hol.php      [L]
 RewriteRule ^HallOfDark$    controller/hod.php      [L]
+
+# API
+    RewriteRule ^API/Monsters$  api/monsters.json      [L]
+    RewriteRule ^API/Runes$     api/runes.json      [L]
+# END API
