@@ -59,7 +59,7 @@
         <script src="js/nav.js"></script>
 
         <?php include_once('../view/import/js-simulator.php'); ?>
-        <script src="model/gb.js"></script>
+        <script src="model/js/data/donjons/gb.js"></script>
         
         
         <script type="text/javascript">

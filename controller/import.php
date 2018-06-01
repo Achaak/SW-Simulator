@@ -68,6 +68,7 @@
     <!-- JAVASCRIPT -->
         <script src="framework/jquery/jquery.min.js"></script>
         <script src="framework/jquery-ui/jquery-ui.min.js"></script>
+        <script src="model/js/data/list_monsters.js"></script>
         <script src="js/nav.js"></script>
         
         <script type="text/javascript">
@@ -88,9 +89,17 @@
                         processData: false,
                         success: function(results){  
                             if(results.codeError == 0) {
-                                var unit_list = results.contentJson.unit_list;
+                                var unit_list_results = results.contentJson.unit_list;
 
-                                console.log(unit_list);
+                                var unit_list = Array();
+                                for (var i = 0; i < results.contentJson.unit_list.length; i++) {
+                                   for (var j = 0; j < list.length; j++) {
+                                        if(results.contentJson.unit_list[i].unit_master_id == list[j].unit_master_id) {
+                                            console.log(list[j].name);
+
+                                        }
+                                   }
+                                }
                             }
                         }
                     });

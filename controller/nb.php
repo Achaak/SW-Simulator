@@ -59,9 +59,12 @@
         <script src="js/nav.js"></script>
 
         <?php include_once('../view/import/js-simulator.php'); ?>
-        <script src="model/nb.js"></script>
+        <script src="model/js/data/donjons/nb.js"></script>
         
         <script type="text/javascript">
+            $(document).ready(function(){     
+                classEnnemiesWaves = nb10;
+            });
         </script>
     <!-- END JAVASCRIPT -->
 </body>
