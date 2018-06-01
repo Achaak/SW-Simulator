@@ -21,6 +21,8 @@
                 $str = file_get_contents($folder.$filename);
                 $json = json_decode($str, true);
 
+                unlink($folder.$filename);
+
                 $json = array("codeError" => 0, "contentJson" => $json);
             }
         /* END TEST */
