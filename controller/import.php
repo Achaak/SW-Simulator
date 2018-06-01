@@ -93,9 +93,9 @@
 
                                 var unit_list = Array();
                                 for (var i = 0; i < results.contentJson.unit_list.length; i++) {
-                                   for (var j = 0; j < list.length; j++) {
-                                        if(results.contentJson.unit_list[i].unit_master_id == list[j].unit_master_id) {
-                                            console.log(list[j].name);
+                                   for (var j = 0; j < list_monsters.length; j++) {
+                                        if(results.contentJson.unit_list[i].unit_master_id == list_monsters[j].unit_master_id) {
+                                            console.log(list_monsters[j].name);
 
                                         }
                                    }
