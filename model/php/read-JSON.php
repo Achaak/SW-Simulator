@@ -11,7 +11,7 @@
         /* TEST */
             $imageFileType = pathinfo($filename,PATHINFO_EXTENSION);
             if($imageFileType != "json") {
-                array_push($messageError, "Le format de la photo est incorrect. (Autorisés: .jpg, .png)");
+                array_push($messageError, "Le format du fichier est incorrect. (Autorisés: .jpg, .png)");
             }
 
             if( empty($messageError) ) {                  
